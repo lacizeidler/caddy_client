@@ -1,13 +1,13 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { PostList } from "./posts/post_list"
 
 export const ApplicationViews = () => {
     return <>
-        <main style={{
-            margin: "5rem 2rem",
-            backgroundColor: "lightgoldenrodyellow"
-        }}>
-            Application views
+        <main>
+            <Route exact path="/">
+                    <PostList />
+            </Route>
         </main>
     </>
 }
