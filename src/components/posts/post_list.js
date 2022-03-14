@@ -1,9 +1,11 @@
 import React, { useState, useEffect} from 'react';
 import { getPosts } from "./post_manager"
-import { Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText, Button } from 'reactstrap';
+import { useHistory } from 'react-router-dom';
 
 export const PostList = () => {
     const [posts, setPosts] = useState([])
+    const history = useHistory()
 
     useEffect(
         () => {
@@ -15,9 +17,16 @@ export const PostList = () => {
 
     return (
         <>
+        <Button
+            onClick={
+                () => {
+                    history.push("/new/post")
+                }
+            }
+        >New Post</Button>
         {
             posts.map(post => {
-                return <Card>
+                return <Card key={post.id}>
                         <CardBody>
                             <CardTitle tag="h5">
                             {post.golfer.user.first_name} {post.golfer.user.last_name}
