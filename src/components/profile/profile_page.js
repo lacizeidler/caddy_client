@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 import { getSingleGolfer } from "./golfer_manager"
+import { GolferPostList } from "./golfer_post_list";
 
 export const ProfilePage = () => {
     const [currentUser, setCurrentUser] = useState({})
@@ -41,6 +42,7 @@ export const ProfilePage = () => {
                     </CardBody>
                 </Card>
             </div>
+            <GolferPostList/>
         </>
     )
 }

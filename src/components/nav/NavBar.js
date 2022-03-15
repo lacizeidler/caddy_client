@@ -13,7 +13,7 @@ export const NavBar = () => {
                 <Link className="nav-link" to="/profile">Profile</Link>
             </li>
             <li className="navbar__item">
-                Scores
+                <Link className="nav-link" to="/scores">Scores</Link>
             </li>
             {
                 (localStorage.getItem("ch_token") !== null) ?

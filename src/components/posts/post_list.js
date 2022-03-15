@@ -2,6 +2,8 @@ import React, { useState, useEffect} from 'react';
 import { getPosts } from "./post_manager"
 import { Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText, Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
+import { BsHeart } from "react-icons/bs";
+import {BiCommentDetail} from "react-icons/bi"
 
 export const PostList = () => {
     const [posts, setPosts] = useState([])
@@ -48,10 +50,10 @@ export const PostList = () => {
                             {post.content}
                             </CardText>
                             <CardLink href="#">
-                            Card Link
+                            <BsHeart/>
                             </CardLink>
                             <CardLink href="#">
-                            Another Link
+                            <BiCommentDetail/>
                             </CardLink>
                         </CardBody>
                         </Card>
