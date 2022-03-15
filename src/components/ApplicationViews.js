@@ -6,6 +6,7 @@ import { FinalScoreForm } from "./scores/final_score_form"
 import { ProfilePage } from "./profile/profile_page"
 import { ScoresPage } from "./scores/scores_page"
 import { ScoresList } from "./scores/scores_list"
+import { EditPost } from "./profile/edit_post"
 
 export const ApplicationViews = () => {
     return <>
@@ -27,6 +28,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/scores/new">
                     <ScoresPage/>
+            </Route>
+            <Route exact path="/posts/edit/:postId(\d+)">
+                    <EditPost/>
             </Route>
         </main>
     </>

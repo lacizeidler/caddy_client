@@ -2,10 +2,15 @@ import React, { useState, useEffect } from "react"
 import { getSingleGolfer } from "./golfer_manager"
 import { getPosts } from "../posts/post_manager"
 import { Card, CardBody, CardSubtitle, CardText, Button } from 'reactstrap';
+import { useHistory } from "react-router-dom";
+import { BsTrash } from "react-icons/bs";
+import { FiEdit } from "react-icons/fi";
+
 
 export const GolferPostList = () => {
     const [posts, setPosts] = useState([])
     const [currentUser, setCurrentUser] = useState({})
+    const history = useHistory()
 
     useEffect(
         () => {
@@ -18,41 +23,68 @@ export const GolferPostList = () => {
     useEffect(
         () => {
             getPosts()
-            .then(setPosts)
+                .then(setPosts)
         },
         []
     )
 
-    return(
+    const deletePost = (id) => {
+        fetch(`http://localhost:8000/posts/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("ch_token")}`
+            }
+        })
+            .then(() => {
+                getPosts()
+                    .then(setPosts)
+            })
+    }
+
+    return (
         <>
             {
                 posts.filter(post => post.golfer_id === currentUser.user_id).map(filteredPost => (
-                      <Card key={filteredPost.id}>
+                    <Card key={filteredPost.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
                         <CardBody>
                             <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
+                                className="mb-2 text-muted"
+                                tag="h6"
                             >
-                            {filteredPost.date}
+                                {filteredPost.date}
                             </CardSubtitle>
                         </CardBody>
                         <img
-                            alt="Card image cap"
-                            src="https://picsum.photos/318/180"
+                            alt={filteredPost.image_url}
+                            src={filteredPost?.image_url}
                             width="100%"
                         />
                         <CardBody>
                             <CardText>
-                            {filteredPost.content}
+                                {filteredPost.content}
                             </CardText>
-                            <Button>
-                            Delete
-                            </Button>
-                            <Button>
-                            Edit
-                            </Button>
+                            <div style={{ "display": "flex" }}>
+                                <Button
+                                    onClick={
+                                        () => {
+                                            deletePost(parseInt(filteredPost.id))
+                                        }
+                                    }
+                                >
+                                    <BsTrash/>
+                                </Button>
+                                <Button
+                                    onClick={
+                                        () => {
+                                            history.push(`/posts/edit/${filteredPost.id}`)
+                                        }
+                                    }
+                                >
+                                    <FiEdit/>
+                                </Button>
+                            </div>
                         </CardBody>
-                        </Card>
+                    </Card>
                 ))
             }
         </>

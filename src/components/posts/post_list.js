@@ -28,7 +28,7 @@ export const PostList = () => {
         >New Post</Button>
         {
             posts.map(post => {
-                return <Card key={post.id}>
+                return <Card key={post.id} style={{"border": "grey solid 1px", "margin": "1%", "padding": "2%"}}>
                         <CardBody>
                             <CardTitle tag="h5">
                             {post.golfer.user.first_name} {post.golfer.user.last_name}
@@ -42,19 +42,19 @@ export const PostList = () => {
                         </CardBody>
                         <img
                             alt="Card image cap"
-                            src="https://picsum.photos/318/180"
+                            src={post?.image_url}
                             width="100%"
                         />
                         <CardBody>
                             <CardText>
                             {post.content}
                             </CardText>
-                            <CardLink href="#">
+                            <Button>
                             <BsHeart/>
-                            </CardLink>
-                            <CardLink href="#">
+                            </Button>
+                            <Button>
                             <BiCommentDetail/>
-                            </CardLink>
+                            </Button>
                         </CardBody>
                         </Card>
             })

@@ -1,25 +1,36 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Button } from "reactstrap"
 import { FinalScoreForm } from "./final_score_form"
+import { HoleByHoleForm } from "./hole_by_hole_form"
 
 export const ScoresPage = () => {
-    const [showForm, setShowForm] = useState(false)
-    const showFormFunction = () => {
-        setShowForm(!showForm)
+    const [showFinalScore, setShowFinalScore] = useState(false)
+    const [showHoleByHoleScore, setShowHoleByHoleScore] = useState(false)
+
+    const showFinalScoreFunction = () => {
+        setShowFinalScore(!showFinalScore)
+    }
+    const showHoleByHoleFunction = () => {
+        setShowHoleByHoleScore(!showHoleByHoleScore)
     }
 
     return(
         <>
         <Button
-            onClick={showFormFunction}
+            onClick={showFinalScoreFunction}
         >
             Final Score
         </Button>
-        <Button>
+        <Button
+            onClick={showHoleByHoleFunction}
+        >
             Hole_by_Hole
         </Button>
-        {showForm && (
+        {showFinalScore && (
             <FinalScoreForm/>
+        )}
+        {showHoleByHoleScore && (
+            <HoleByHoleForm/>
         )}
         </>
     )

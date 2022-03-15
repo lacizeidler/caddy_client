@@ -17,27 +17,23 @@ export const ProfilePage = () => {
 
     return (
         <>
-            <div>
-                <Card
-                >
+            <div style={{"border": "grey solid 1px", "margin": "1%", "padding": "2%"}}>
+                <Card>
                     <CardBody>
-                        <CardTitle tag="h5">
-                            {currentUser.user?.username}
+                        <CardTitle tag="h3">
+                            Profile 
                         </CardTitle>
-                        <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
-                        >
-                            {currentUser.user?.first_name} {currentUser.user?.last_name}
-                        </CardSubtitle>
-                        <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
-                        >
-                            {currentUser.user?.email}
-                        </CardSubtitle>
                         <CardText>
-                            {currentUser.bio}
+                            Username: {currentUser.user?.username}
+                        </CardText>
+                        <CardText>
+                            Name: {currentUser.user?.first_name} {currentUser.user?.last_name}
+                        </CardText>
+                        <CardText>
+                            {currentUser.user?.email}
+                        </CardText>
+                        <CardText>
+                            Bio: {currentUser.bio}
                         </CardText>
                     </CardBody>
                 </Card>

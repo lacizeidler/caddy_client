@@ -50,3 +50,12 @@ export const createFinalScore = (finalScore) => {
     return fetch("http://localhost:8000/final_scores", fetchOptions)
     .then(response => response.json())
 }
+
+export const getPostById = (id) => {
+    return fetch(`http://localhost:8000/posts/${id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("ch_token")}`
+        }
+    })
+        .then(response => response.json())
+}
