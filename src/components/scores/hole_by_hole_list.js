@@ -1,13 +1,9 @@
-// Filter through to get all the hole_by_hole objects that have the current user golfer_id.
-// Filter through individual holes objects that have a hole_by_hole_id that matches any of the hole_by_hole objects that were filtered earlier. 
-
 import React, { useState, useEffect } from "react"
-import { getSingleGolfer } from "../profile/golfer_manager"
-import { getHoleByHole, getHoleByHoleList, getIndividualHoles } from "./score_manager"
+import { Table } from 'reactstrap';
+import { getHoleByHoleList } from "./score_manager"
 
 export const HoleByHoleList = () => {
     const [holeByHoles, setHoleByHoles] = useState([])
-    const [individualHoles, setIndividualHoles] = useState([])
 
     useEffect(
         () => {
@@ -17,36 +13,47 @@ export const HoleByHoleList = () => {
         []
     )
 
-    useEffect(
-        () => {
-            getIndividualHoles()
-            .then(setIndividualHoles)
-        },
-        []
-    )
-    
-    
-    var hole_by_holes = holeByHoles.map(holeByHole => {
-        return {
-            id: holeByHole.id,
-            date: holeByHole.date,
-            share: holeByHole.share,
-            course_id: holeByHole.course_id,
-            golfer_id: holeByHole.golfer_id,
-            num_of_holes_id: holeByHole.num_of_holes_id
-        }
-    })
-
     return(
         <>
         <div>
         {
-            individualHoles.filter(individual => individual.hole_by_hole_id === hole_by_holes.id).map(filteredIndividual => (
-                <div>
-                    <h2>{filteredIndividual.par}</h2>
-                    <h2>{hole_by_holes.date}</h2>
-                </div>
-            ))
+            holeByHoles.map(course => {
+                return <div key={course.id}>
+                <h4>Date: {course.date}</h4>
+                <h4>Course: {course.course.name}</h4>
+                <h4># of Holes: {course.num_of_holes.holes}</h4>
+                
+                {course.holes_for_hole_by_hole.map(hole => {
+                    return <Table hover key={hole.id}>
+                    <thead>
+                        <tr>
+                            <th>
+                                Hole #
+                            </th>
+                            <th>
+                                Par
+                            </th>
+                            <th>
+                                Score
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                {hole.hole_num}
+                            </th>
+                            <td>
+                                {hole.par}
+                            </td>
+                            <td>
+                                {hole.score}
+                            </td>
+                        </tr>
+                    </tbody>
+                </Table>
+                })}</div>
+            })
         }
         </div>
         </>

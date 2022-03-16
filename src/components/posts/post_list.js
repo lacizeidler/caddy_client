@@ -1,9 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { getPosts } from "./post_manager"
 import { Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText, Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import { BsHeart } from "react-icons/bs";
-import {BiCommentDetail} from "react-icons/bi"
+import { BiCommentDetail } from "react-icons/bi"
 
 export const PostList = () => {
     const [posts, setPosts] = useState([])
@@ -12,32 +12,32 @@ export const PostList = () => {
     useEffect(
         () => {
             getPosts()
-            .then(setPosts)
+                .then(setPosts)
         },
         []
     )
 
     return (
         <>
-        <Button
-            onClick={
-                () => {
-                    history.push("/new/post")
+            <Button
+                onClick={
+                    () => {
+                        history.push("/new/post")
+                    }
                 }
-            }
-        >New Post</Button>
-        {
-            posts.map(post => {
-                return <Card key={post.id} style={{"border": "grey solid 1px", "margin": "1%", "padding": "2%"}}>
+            >New Post</Button>
+            {
+                posts.map(post => {
+                    return <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
                         <CardBody>
                             <CardTitle tag="h5">
-                            {post.golfer.user.first_name} {post.golfer.user.last_name}
+                                {post.golfer.user.first_name} {post.golfer.user.last_name}
                             </CardTitle>
                             <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
+                                className="mb-2 text-muted"
+                                tag="h6"
                             >
-                            {post.date}
+                                {post.date}
                             </CardSubtitle>
                         </CardBody>
                         <img
@@ -47,18 +47,24 @@ export const PostList = () => {
                         />
                         <CardBody>
                             <CardText>
-                            {post.content}
+                                {post.content}
                             </CardText>
                             <Button>
-                            <BsHeart/>
+                                <BsHeart />
                             </Button>
-                            <Button>
-                            <BiCommentDetail/>
+                            <Button
+                                onClick={
+                                    () => {
+                                        history.push(`/posts/comments/${post.id}`)
+                                    }
+                                }
+                            >
+                                <BiCommentDetail />
                             </Button>
                         </CardBody>
-                        </Card>
-            })
-        }
+                    </Card>
+                })
+            }
         </>
     )
 }

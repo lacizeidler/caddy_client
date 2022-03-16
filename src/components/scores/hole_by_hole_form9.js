@@ -1,4 +1,14 @@
-export const HoleByHoleForm = () => {
+import { useEffect, useState } from "react/cjs/react.development"
+import { useParams, useHistory } from "react-router-dom"
+
+export const HoleByHoleForm9 = () => {
+    const [newHoleByHole, setNewHoleByHole] = useState({
+        course_id: 0,
+        num_of_holes_id: 0,
+        share: 0
+    })
+    const [numOfHoles, setNumOfHoles] = useState([])
+
     
     return (
         <Table hover>

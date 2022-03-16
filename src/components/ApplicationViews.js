@@ -7,6 +7,7 @@ import { ProfilePage } from "./profile/profile_page"
 import { ScoresPage } from "./scores/scores_page"
 import { ScoresList } from "./scores/scores_list"
 import { EditPost } from "./profile/edit_post"
+import { CommentList } from "./comments/comment_list"
 
 export const ApplicationViews = () => {
     return <>
@@ -31,6 +32,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/posts/edit/:postId(\d+)">
                     <EditPost/>
+            </Route>
+            <Route exact path="/posts/comments/:postId(\d+)">
+                    <CommentList/>
             </Route>
         </main>
     </>
