@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { getPosts } from "./post_manager"
 import { Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText, Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
-import { BsHeart } from "react-icons/bs";
+import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import { BiCommentDetail } from "react-icons/bi"
+import { getSingleGolfer } from '../profile/golfer_manager';
 
 export const PostList = () => {
     const [posts, setPosts] = useState([])
     const history = useHistory()
+    const [currentGolfer, setCurrentGolfer] = useState({})
 
     useEffect(
         () => {
@@ -16,6 +18,37 @@ export const PostList = () => {
         },
         []
     )
+
+    useEffect(
+        () => {
+            getSingleGolfer().
+                then(setCurrentGolfer)
+        },
+        []
+    )
+
+    const deletePostLike = (id) => {
+        fetch(`http://localhost:8000/posts/${id}/unlike`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("ch_token")}`
+            }
+        })
+        getPosts()
+            .then(setPosts)
+    }
+
+    const createPostLike = (id) => {
+        fetch(`http://localhost:8000/posts/${id}/like`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("ch_token")}`
+            }
+        })
+        getPosts()
+            .then(setPosts)
+    }
 
     return (
         <>
@@ -49,9 +82,43 @@ export const PostList = () => {
                             <CardText>
                                 {post.content}
                             </CardText>
-                            <Button>
-                                <BsHeart />
-                            </Button>
+            
+                            {
+                                post.likes.length === 0 
+                                ? <Button
+                                onClick={evt => {
+                                    evt.preventDefault()
+                                    createPostLike(post.id)
+                                }}
+                                >
+                                    <BsHeart/>
+                                </Button>
+                                :
+                                post.likes.map(likeObj => {
+                                    if (likeObj.id === currentGolfer.id) {
+                                        return <Button key={likeObj.id}
+                                        onClick={evt => {
+                                            evt.preventDefault()
+                                            deletePostLike(post.id)
+                                        }}
+                                        >
+                                            <BsFillHeartFill />
+                                            {post.likes.length}
+                                        </Button>
+                                    } else {
+                                        return <Button key={likeObj.id}
+                                        onClick={evt => {
+                                            evt.preventDefault()
+                                            createPostLike(post.id)
+                                        }}
+                                        >
+                                            <BsHeart/>
+                                            {post.likes.length}
+                                        </Button>
+                                    }
+                                })
+                            }
+
                             <Button
                                 onClick={
                                     () => {

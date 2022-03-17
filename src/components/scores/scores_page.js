@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Button } from "reactstrap"
 import { FinalScoreForm } from "./final_score_form"
+import { HoleByHoleForm } from "./hole_by_hole_form"
 
 export const ScoresPage = () => {
     const [showFinalScore, setShowFinalScore] = useState(false)
@@ -28,9 +29,9 @@ export const ScoresPage = () => {
         {showFinalScore && (
             <FinalScoreForm/>
         )}
-        {/* {showHoleByHoleScore && (
+        {showHoleByHoleScore && (
             <HoleByHoleForm/>
-        )} */}
+        )}
         </>
     )
 }

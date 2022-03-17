@@ -59,3 +59,12 @@ export const getHoleByHoleList = () => {
     })
         .then(response => response.json())
 }
+
+export const getHoleByHoleById = (id) => {
+    return fetch(`http://localhost:8000/hole_by_holes/${id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("ch_token")}`
+        }
+    })
+        .then(response => response.json())
+}

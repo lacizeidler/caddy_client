@@ -73,7 +73,7 @@ export const CommentList = () => {
                                     className="mb-2 text-muted"
                                     tag="h6"
                                 >
-                                    First and Last Name when i figure out how
+                                    {comment.golfer.user?.first_name} {comment.golfer.user?.last_name}
                                 </CardSubtitle>
                                 <CardText>
                                     {comment.comment}

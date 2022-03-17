@@ -59,3 +59,12 @@ export const getPostById = (id) => {
     })
         .then(response => response.json())
 }
+
+const deletePostLike = (id) => {
+    fetch(`http://localhost:8000/posts/unlike/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("ch_token")}`
+        }
+    })
+}

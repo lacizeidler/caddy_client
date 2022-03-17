@@ -8,6 +8,7 @@ import { ScoresPage } from "./scores/scores_page"
 import { ScoresList } from "./scores/scores_list"
 import { EditPost } from "./profile/edit_post"
 import { CommentList } from "./comments/comment_list"
+import { IndividualHolesForm } from "./scores/individual_holes_form"
 
 export const ApplicationViews = () => {
     return <>
@@ -35,6 +36,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/posts/comments/:postId(\d+)">
                     <CommentList/>
+            </Route>
+            <Route exact path="/new/individual_holes/:holeByHoleId(\d+)">
+                    <IndividualHolesForm/>
             </Route>
         </main>
     </>
