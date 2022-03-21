@@ -108,20 +108,6 @@ export const HoleByHoleForm = () => {
     const setIndividualHoleArray = [setNewIndividualHole1, setNewIndividualHole2, setNewIndividualHole3, setNewIndividualHole4, setNewIndividualHole5, setNewIndividualHole6, setNewIndividualHole7, setNewIndividualHole8, setNewIndividualHole9, setNewIndividualHole10, setNewIndividualHole11, setNewIndividualHole12, setNewIndividualHole13, setNewIndividualHole14, setNewIndividualHole15, setNewIndividualHole16, setNewIndividualHole17, setNewIndividualHole18]
     const [numOfHoles, setNumOfHoles] = useState([])
     const [courses, setCourses] = useState([])
-    const [value, setValue] = useState('');
-    const handleSelect = (e) => {
-        console.log(e);
-        setValue(e)
-    }
-
-
-
-    // useEffect(
-    //     () => {
-    //         ChangeTable()
-    //     },
-    //     [newHoleByHole]
-    // )
 
     useEffect(
         () => {
@@ -169,6 +155,7 @@ export const HoleByHoleForm = () => {
                     onChange={changeHoleByHoleState}
                 >
                     <option value={0}>Select a golf course ...</option>
+
                     {
                         courses.map(course => {
                             return <option key={course.id} value={course.id}>
@@ -189,7 +176,6 @@ export const HoleByHoleForm = () => {
                     name="num_of_holes_id"
                     value={newHoleByHole.num_of_holes_id}
                     onChange={changeHoleByHoleState}
-                    onSelect={handleSelect}
                 >
                     <option value={0}>Select # of holes ...</option>
                     {
@@ -220,7 +206,6 @@ export const HoleByHoleForm = () => {
                     <tbody>
                         {
                             individualHoleArray.map((hole, i) => {
-                                if (newHoleByHole.num_of_holes_id === 1) {
                                     return <tr key={i}>
                                         <th scope="row"
                                             name="hole_num"
@@ -252,39 +237,6 @@ export const HoleByHoleForm = () => {
                                             />
                                         </td>
                                     </tr>
-                                } else if (newHoleByHole.num_of_holes_id === 2) {
-                                    <tr key={i}>
-                                        <th scope="row"
-                                            name="hole_num"
-                                            value={i + 1}>
-                                            {i + 1}
-                                        </th>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                name="par"
-                                                value={individualHoleArray[i].par}
-                                                onChange={
-                                                    (evt) => {
-                                                        changeIndividualHoleState(evt, i)
-                                                    }
-                                                }
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                name="score"
-                                                value={individualHoleArray[i].score}
-                                                onChange={
-                                                    (evt) => {
-                                                        changeIndividualHoleState(evt, i)
-                                                    }
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                                }
                             })}
                     </tbody>
                 </Table>
