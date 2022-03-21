@@ -108,6 +108,7 @@ export const HoleByHoleForm = () => {
     const setIndividualHoleArray = [setNewIndividualHole1, setNewIndividualHole2, setNewIndividualHole3, setNewIndividualHole4, setNewIndividualHole5, setNewIndividualHole6, setNewIndividualHole7, setNewIndividualHole8, setNewIndividualHole9, setNewIndividualHole10, setNewIndividualHole11, setNewIndividualHole12, setNewIndividualHole13, setNewIndividualHole14, setNewIndividualHole15, setNewIndividualHole16, setNewIndividualHole17, setNewIndividualHole18]
     const [numOfHoles, setNumOfHoles] = useState([])
     const [courses, setCourses] = useState([])
+    const [tableArray, setTableArray] = useState([])
 
     useEffect(
         () => {
@@ -115,6 +116,13 @@ export const HoleByHoleForm = () => {
                 .then(setNumOfHoles)
         },
         []
+    )
+
+    useEffect(
+        () => {
+            ChangeTable()
+        },
+        [newHoleByHole]
     )
 
     useEffect(
@@ -140,6 +148,51 @@ export const HoleByHoleForm = () => {
         copy[key] = value
         setIndividualHoleArray[i](copy)
     }
+
+    const ChangeTable = () => {
+        let array = []
+        let numOfHoles = 0
+        if (newHoleByHole.num_of_holes_id === "1") {
+            array = individualHoleArray.slice(0, 8)
+            numOfHoles = 9
+        } else if (newHoleByHole.num_of_holes_id === "2") {
+            numOfHoles = 18
+            array = individualHoleArray
+        }
+        for (let i = 0; i < numOfHoles; i++) {
+            return <tr key={i}>
+                <th scope="row"
+                    name="hole_num"
+                    value={i + 1}>
+                    {i + 1}
+                </th>
+                <td>
+                    <input
+                        type="number"
+                        name="par"
+                        value={individualHoleArray[i].par}
+                        onChange={
+                            (evt) => {
+                                changeIndividualHoleState(evt, i)
+                            }
+                        }
+                    />
+                </td>
+                <td>
+                    <input
+                        type="number"
+                        name="score"
+                        value={individualHoleArray[i].score}
+                        onChange={
+                            (evt) => {
+                                changeIndividualHoleState(evt, i)
+                            }
+                        }
+                    />
+                </td>
+            </tr>}
+            setTableArray(array)
+        }
 
     return (
         <Form>
@@ -204,40 +257,7 @@ export const HoleByHoleForm = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            individualHoleArray.map((hole, i) => {
-                                    return <tr key={i}>
-                                        <th scope="row"
-                                            name="hole_num"
-                                            value={i + 1}>
-                                            {i + 1}
-                                        </th>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                name="par"
-                                                value={individualHoleArray[i].par}
-                                                onChange={
-                                                    (evt) => {
-                                                        changeIndividualHoleState(evt, i)
-                                                    }
-                                                }
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="number"
-                                                name="score"
-                                                value={individualHoleArray[i].score}
-                                                onChange={
-                                                    (evt) => {
-                                                        changeIndividualHoleState(evt, i)
-                                                    }
-                                                }
-                                            />
-                                        </td>
-                                    </tr>
-                            })}
+                        {tableArray.map(tableObj => tableObj)}
                     </tbody>
                 </Table>
             </FormGroup>
@@ -251,7 +271,7 @@ export const HoleByHoleForm = () => {
                         course_id: parseInt(newHoleByHole.course_id),
                         num_of_holes_id: parseInt(newHoleByHole.num_of_holes_id),
                         share: newHoleByHole.share,
-                        holes: individualHoleArray
+                        holes: tableArray
                     }
 
                     // Send POST request to your API
