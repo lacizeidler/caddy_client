@@ -108,7 +108,16 @@ export const HoleByHoleForm = () => {
     const setIndividualHoleArray = [setNewIndividualHole1, setNewIndividualHole2, setNewIndividualHole3, setNewIndividualHole4, setNewIndividualHole5, setNewIndividualHole6, setNewIndividualHole7, setNewIndividualHole8, setNewIndividualHole9, setNewIndividualHole10, setNewIndividualHole11, setNewIndividualHole12, setNewIndividualHole13, setNewIndividualHole14, setNewIndividualHole15, setNewIndividualHole16, setNewIndividualHole17, setNewIndividualHole18]
     const [numOfHoles, setNumOfHoles] = useState([])
     const [courses, setCourses] = useState([])
-    const [tableArray, setTableArray] = useState([])
+    const [show9, setShow9] = useState(false)
+    const [show18, setShow18] = useState(false)
+    const show9Function = (evt) => {
+        setShow9(!show9);
+        changeHoleByHoleState(evt)
+    }
+    const show18Function = (evt) => {
+        setShow18(!show18);
+        changeHoleByHoleState(evt)
+    }
 
     useEffect(
         () => {
@@ -116,13 +125,6 @@ export const HoleByHoleForm = () => {
                 .then(setNumOfHoles)
         },
         []
-    )
-
-    useEffect(
-        () => {
-            ChangeTable()
-        },
-        [newHoleByHole]
     )
 
     useEffect(
@@ -149,17 +151,8 @@ export const HoleByHoleForm = () => {
         setIndividualHoleArray[i](copy)
     }
 
-    const ChangeTable = () => {
-        let array = []
-        let numOfHoles = 0
-        if (newHoleByHole.num_of_holes_id === "1") {
-            array = individualHoleArray.slice(0, 8)
-            numOfHoles = 9
-        } else if (newHoleByHole.num_of_holes_id === "2") {
-            numOfHoles = 18
-            array = individualHoleArray
-        }
-        for (let i = 0; i < numOfHoles; i++) {
+    const ListOf18 = () => {
+        return individualHoleArray.map((hole, i) => {
             return <tr key={i}>
                 <th scope="row"
                     name="hole_num"
@@ -190,9 +183,48 @@ export const HoleByHoleForm = () => {
                         }
                     />
                 </td>
-            </tr>}
-            setTableArray(array)
-        }
+            </tr>
+        })
+    }
+
+    const ListOf9 = () => {
+        return individualHoleArray.slice(0, 8).map((hole, i) => {
+            return <tr key={i}>
+                <th scope="row"
+                    name="hole_num"
+                    value={i + 1}>
+                    {i + 1}
+                </th>
+                <td>
+                    <input
+                        type="number"
+                        name="par"
+                        value={individualHoleArray[i].par}
+                        onChange={
+                            (evt) => {
+                                changeIndividualHoleState(evt, i)
+                            }
+                        }
+                    />
+                </td>
+                <td>
+                    <input
+                        type="number"
+                        name="score"
+                        value={individualHoleArray[i].score}
+                        onChange={
+                            (evt) => {
+                                changeIndividualHoleState(evt, i)
+                            }
+                        }
+                    />
+                </td>
+            </tr>
+        })
+    }
+
+    const found1 = numOfHoles.find(hole => hole.id === 1)
+    const found2 = numOfHoles.find(hole => hole.id === 2)
 
     return (
         <Form>
@@ -208,7 +240,6 @@ export const HoleByHoleForm = () => {
                     onChange={changeHoleByHoleState}
                 >
                     <option value={0}>Select a golf course ...</option>
-
                     {
                         courses.map(course => {
                             return <option key={course.id} value={course.id}>
@@ -223,43 +254,32 @@ export const HoleByHoleForm = () => {
                 <Label for="exampleText">
                     Number of Holes
                 </Label>
-                <Input
-                    className="mb-3"
-                    type="select"
+                <Button
                     name="num_of_holes_id"
-                    value={newHoleByHole.num_of_holes_id}
-                    onChange={changeHoleByHoleState}
+                    value={found1?.id}
+                    onClick={show9Function}
                 >
-                    <option value={0}>Select # of holes ...</option>
-                    {
-                        numOfHoles.map(number => {
-                            return <option key={number.id} value={number.id}>
-                                {number.holes}
-                            </option>
-                        })
-                    }
-                </Input>
+                    9
+                </Button>
+                <Button
+                    name="num_of_holes_id"
+                    value={found2?.id}
+                    onClick={show18Function}
+                >
+                    18
+                </Button>
             </FormGroup>
             <FormGroup>
-                <Table hover>
-
-                    <thead>
-                        <tr>
-                            <th>
-                                Hole #
-                            </th>
-                            <th>
-                                Par
-                            </th>
-                            <th>
-                                Score
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tableArray.map(tableObj => tableObj)}
-                    </tbody>
-                </Table>
+            {
+                show9 && (
+                    <ListOf9 />
+                )
+            }
+            {
+                show18 && (
+                    <ListOf18 />
+                )
+            }
             </FormGroup>
             <Button
                 onClick={evt => {
@@ -271,7 +291,7 @@ export const HoleByHoleForm = () => {
                         course_id: parseInt(newHoleByHole.course_id),
                         num_of_holes_id: parseInt(newHoleByHole.num_of_holes_id),
                         share: newHoleByHole.share,
-                        holes: tableArray
+                        holes: individualHoleArray
                     }
 
                     // Send POST request to your API
