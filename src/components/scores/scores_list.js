@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
-import { Button } from "reactstrap"
+import { Button, ButtonGroup } from "reactstrap"
 import { FinalScoreList } from "./final_score_list"
 import { HoleByHoleList } from "./hole_by_hole_list"
 
@@ -9,38 +9,31 @@ export const ScoresList = () => {
     const [showTableForm, setShowTableForm] = useState(false)
     const history = useHistory()
     const showFinalFormFunction = () => {
-        setShowFinalForm(!showFinalForm)
+        setShowFinalForm(true)
     }
     const showTableFormFunction = () => {
         setShowTableForm(!showTableForm)
     }
 
-    return(
+    return (
         <>
-        <button
-            onClick={
-                () => 
-                history.push("/scores/new")
-            }
-        >
-            New Score
-        </button>
-        <button
-            onClick={showFinalFormFunction}
-        >
-            Final Score
-        </button>
-        <button
-            onClick={showTableFormFunction}
-        >
-            Hole_by_Hole
-        </button>
-        {showFinalForm && (
-            <FinalScoreList/>
-        )}
-        {showTableForm && (
-            <HoleByHoleList/>
-        )}
+                <Button
+                    onClick={history.push("/scores/new")}
+                >
+                    New Score
+                </Button>
+                <Button
+                    onClick={showFinalFormFunction}
+                >
+                    Final Score
+                </Button>
+                <Button
+                    onClick={showTableFormFunction}
+                >
+                    Hole_by_Hole
+                </Button>
+            {showFinalForm ? <FinalScoreList/> : ""}
+            {showTableForm ? <HoleByHoleList/> : ""}
         </>
     )
 }

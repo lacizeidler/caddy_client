@@ -16,22 +16,18 @@ export const ScoresPage = () => {
 
     return(
         <>
-        <button
+        <Button
             onClick={showFinalScoreFunction}
         >
             Final Score
-        </button>
-        <button
+        </Button>
+        <Button
             onClick={showHoleByHoleFunction}
         >
             Hole_by_Hole
-        </button>
-        {showFinalScore && (
-            <FinalScoreForm/>
-        )}
-        {showHoleByHoleScore && (
-            <HoleByHoleForm/>
-        )}
+        </Button>
+        {showFinalScore ? <FinalScoreForm/> : ""}
+        {showHoleByHoleScore ? <HoleByHoleForm/> : ""}
         </>
     )
 }

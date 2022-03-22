@@ -17,7 +17,7 @@ export const ProfilePage = () => {
 
     return (
         <>
-            <div style={{"border": "grey solid 1px", "margin": "1%", "padding": "2%"}}>
+            <div style={{"margin": "1%", "padding": "2%"}}>
                 <Card>
                     <CardBody>
                         <CardTitle tag="h3">

@@ -1,47 +1,17 @@
 import React, { useState, useEffect } from "react"
 import { Table } from 'reactstrap';
-import { getHoleByHoleById, getHoleByHoleList } from "./score_manager"
+import { getSharedHoleByHole } from "./score_manager"
 
-export const HoleByHoleList = () => {
+export const SharedHoleByHoleList = () => {
     const [holeByHoles, setHoleByHoles] = useState([])
-    // const [table, setTable] = useState({})
 
     useEffect(
         () => {
-            getHoleByHoleList()
+            getSharedHoleByHole()
                 .then(setHoleByHoles)
         },
         []
     )
-
-    // const sharedTable = (e) => {
-    //     e.preventDefault()
-    //     let updatedTable = {
-    //         ...table,
-    //         share: 0
-    //     }
-    //     fetch(`http://localhost:8000/hole_by_holes/${table.id}`, {
-    //         method: "PUT",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Token ${localStorage.getItem("ch_token")}`
-    //         },
-    //         body: JSON.stringify(updatedPost)
-    //     })
-    // } 
-
-    const deleteHoleByHole = (id) => {
-        fetch(`http://localhost:8000/hole_by_holes/${id}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("ch_token")}`
-            }
-        })
-            .then(() => {
-                getHoleByHoleList()
-                    .then(setHoleByHoles)
-            })
-    }
 
     return (
         <>
@@ -86,19 +56,6 @@ export const HoleByHoleList = () => {
                                     </Table>
                                 </div>
                             })}
-
-                            <button
-                                onClick={
-                                    () => {
-                                        deleteHoleByHole(parseInt(course.id))
-                                    }
-                                }
-                            >
-                                Delete
-                            </button>
-                            <button>
-                                Share
-                            </button>
                         </div>
                     })
                 }

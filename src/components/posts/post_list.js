@@ -52,13 +52,30 @@ export const PostList = () => {
 
     return (
         <>
-            <button
+            <Button
+                color="success"
                 onClick={
                     () => {
                         history.push("/new/post")
                     }
                 }
-            >New Post</button>
+            >New Post</Button>
+            <Button
+                color="success"
+                onClick={
+                    () => {
+                        history.push("/shared/final_score")
+                    }
+                }
+            >Shared Final Scores</Button>
+            <Button
+                color="success"
+                onClick={
+                    () => {
+                        history.push("/shared/table_score")
+                    }
+                }
+            >Shared Table Scores</Button>
             {
                 posts.map(post => {
                     return <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>

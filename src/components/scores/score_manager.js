@@ -7,8 +7,26 @@ export const getFinalScores = () => {
         .then(response => response.json())
 }
 
+export const getSharedFinalScores = () => {
+    return fetch("http://localhost:8000/final_scores/sharedfinal", {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("ch_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const getHoleByHole = () => {
     return fetch("http://localhost:8000/hole_by_holes", {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("ch_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
+export const getSharedHoleByHole = () => {
+    return fetch("http://localhost:8000/hole_by_holes/sharedtables", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("ch_token")}`
         }

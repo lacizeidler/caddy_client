@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react"
-import { getSingleGolfer } from "../profile/golfer_manager"
-import { getPosts } from "../posts/post_manager"
 import { Card, CardBody, CardSubtitle, CardText, Button } from 'reactstrap';
-import { getFinalScores } from "./score_manager";
+import { getSharedFinalScores } from "./score_manager";
 
-export const FinalScoreList = () => {
+export const SharedFinalScoreList = () => {
     const [finalScores, setFinalScores] = useState([])
 
     useEffect(
         () => {
-            getFinalScores()
+            getSharedFinalScores()
             .then(setFinalScores)
         },
         []

@@ -9,6 +9,8 @@ import { ScoresList } from "./scores/scores_list"
 import { EditPost } from "./profile/edit_post"
 import { CommentList } from "./comments/comment_list"
 import { CourseForm } from "./courses/course_form"
+import { SharedFinalScoreList } from "./scores/shared_final_score"
+import { SharedHoleByHoleList } from "./scores/shared_table_score"
 
 export const ApplicationViews = () => {
     return <>
@@ -39,6 +41,12 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/new/course">
                     <CourseForm/>
+            </Route>
+            <Route exact path="/shared/final_score">
+                    <SharedFinalScoreList/>
+            </Route>
+            <Route exact path="/shared/table_score">
+                    <SharedHoleByHoleList/>
             </Route>
         </main>
     </>
