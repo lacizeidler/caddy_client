@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom";
 import { Table, Button } from 'reactstrap';
+import { getSingleGolfer } from "../profile/golfer_manager";
 import { getHoleByHoleList } from "./score_manager"
 
 export const HoleByHoleList = () => {
     const [holeByHoles, setHoleByHoles] = useState([])
+    const [currentUser, setCurrentUser] = useState({})
     const history = useHistory()
+
+    useEffect(
+        () => {
+            getSingleGolfer()
+                .then(setCurrentUser)
+        },
+        []
+    )
 
     useEffect(
         () => {
@@ -15,12 +25,25 @@ export const HoleByHoleList = () => {
         []
     )
 
+    const deleteHoleByHole = (id) => {
+        fetch(`http://localhost:8000/hole_by_holes/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("ch_token")}`
+            }
+        })
+            .then(() => {
+                getHoleByHoleList()
+                .then(setHoleByHoles)
+            })
+    }
+
     return (
         <>
             <div>
                 {
-                    holeByHoles.map(course => {
-                        return <div key={course.id}>
+                    holeByHoles.filter(hole => hole.golfer_id === currentUser.user.id).map(course => {
+                        return <div style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }} key={course.id}>
                             <h4>Date: {course.date}</h4>
                             <h4>Course: {course.course.name}</h4>
                             <h4># of Holes: {course.num_of_holes.holes}</h4>
@@ -59,15 +82,15 @@ export const HoleByHoleList = () => {
                                 </div>
                             })}
 
-                            <Button
+                            <button
                                 onClick={
                                     () => {
-                                        history.push(`/new/individual_holes/${course.id}`)
+                                        deleteHoleByHole(parseInt(course.id))
                                     }
                                 }
                             >
-                                Add Holes
-                            </Button>
+                                Delete
+                            </button>
                         </div>
                     })
                 }

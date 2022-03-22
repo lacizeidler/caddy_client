@@ -11,7 +11,7 @@ export const CaddyHack = () => (
             if (localStorage.getItem("ch_token")) {
                 return <>
                     <Route>
-                        <NavBar />
+                        <NavBar/>
                         <ApplicationViews />
                     </Route>
                 </>
@@ -27,6 +27,5 @@ export const CaddyHack = () => (
         <Route path="/register">
             <Register />
         </Route>
-
     </>
 )

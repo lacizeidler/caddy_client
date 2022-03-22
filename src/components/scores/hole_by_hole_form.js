@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react/cjs/react.development"
-import { useParams, useHistory } from "react-router-dom"
-import { Form, FormGroup, Input, Label, Button, Table } from 'reactstrap';
+import { useHistory } from "react-router-dom"
+import { Form, FormGroup, Input, Label } from 'reactstrap';
 import { getNumOfHoles, getCourses } from "../posts/post_manager";
-import { CourseForm } from "../courses/course_form";
-import { createHoleByHole, getHoleByHoleById } from "./score_manager"
+import { createHoleByHole } from "./score_manager"
 
 
 export const HoleByHoleForm = () => {
@@ -248,40 +247,54 @@ export const HoleByHoleForm = () => {
                         })
                     }
                 </Input>
-                <CourseForm />
+                <button
+                    onClick={
+                        () => {
+                            history.push("/new/course")
+                        }
+                    }
+                >
+                    New Course
+                </button>
             </FormGroup>
             <FormGroup>
                 <Label for="exampleText">
                     Number of Holes
                 </Label>
-                <Button
+                <button
                     name="num_of_holes_id"
                     value={found1?.id}
-                    onClick={show9Function}
+                    onClick={(evt) => {
+                        evt.preventDefault()
+                        show9Function(evt)
+                    }}
                 >
                     9
-                </Button>
-                <Button
+                </button>
+                <button
                     name="num_of_holes_id"
                     value={found2?.id}
-                    onClick={show18Function}
+                    onClick={(evt) => {
+                        evt.preventDefault()
+                        show18Function(evt)
+                    }}
                 >
                     18
-                </Button>
+                </button>
             </FormGroup>
             <FormGroup>
-            {
-                show9 && (
-                    <ListOf9 />
-                )
-            }
-            {
-                show18 && (
-                    <ListOf18 />
-                )
-            }
+                {
+                    show9 && (
+                        <ListOf9 />
+                    )
+                }
+                {
+                    show18 && (
+                        <ListOf18 />
+                    )
+                }
             </FormGroup>
-            <Button
+            <button
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
@@ -299,7 +312,7 @@ export const HoleByHoleForm = () => {
                 }}
             >
                 Submit
-            </Button>
+            </button>
         </Form>
     )
 }

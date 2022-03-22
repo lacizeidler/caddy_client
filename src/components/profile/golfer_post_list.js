@@ -44,7 +44,7 @@ export const GolferPostList = () => {
     return (
         <>
             {
-                posts.filter(post => post.golfer_id === currentUser.user_id).map(filteredPost => (
+                posts.filter(post => post.golfer_id === currentUser.user.id).map(filteredPost => (
                     <Card key={filteredPost.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
                         <CardBody>
                             <CardSubtitle
@@ -64,7 +64,7 @@ export const GolferPostList = () => {
                                 {filteredPost.content}
                             </CardText>
                             <div style={{ "display": "flex" }}>
-                                <Button
+                                <button
                                     onClick={
                                         () => {
                                             deletePost(parseInt(filteredPost.id))
@@ -72,8 +72,8 @@ export const GolferPostList = () => {
                                     }
                                 >
                                     <BsTrash/>
-                                </Button>
-                                <Button
+                                </button>
+                                <button
                                     onClick={
                                         () => {
                                             history.push(`/posts/edit/${filteredPost.id}`)
@@ -81,7 +81,7 @@ export const GolferPostList = () => {
                                     }
                                 >
                                     <FiEdit/>
-                                </Button>
+                                </button>
                             </div>
                         </CardBody>
                     </Card>

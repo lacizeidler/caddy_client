@@ -27,7 +27,7 @@ export const FinalScoreList = () => {
     return(
         <>
             {
-                finalScores.filter(finalScore => finalScore.golfer_id === currentUser.user_id).map(filteredFinalScore => (
+                finalScores.filter(finalScore => finalScore.golfer_id === currentUser.user.id).map(filteredFinalScore => (
                       <Card key={filteredFinalScore.id} style={{"border": "grey solid 1px", "margin": "2%", "padding": "2%"}}>
                         <CardBody>
                             <CardSubtitle

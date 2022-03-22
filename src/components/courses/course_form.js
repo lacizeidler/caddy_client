@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { createCourse } from "./course_manager"
-import { Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, FormGroup, Button } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, FormGroup, Form } from 'reactstrap';
 
 export const CourseForm = () => {
     const [newCourse, setNewCourse] = useState({
@@ -9,13 +9,6 @@ export const CourseForm = () => {
         state: "",
         zipcode: ""
     })
-    const [isOpen, setIsOpen] = useState(false)
-    const showModal = () => {
-        setIsOpen(true)
-    }
-    // const hideModal = () => {
-    //     setIsOpen(false)
-    // }
 
     const changeCourseState = (domEvent) => {
         const copy = { ...newCourse }
@@ -27,21 +20,7 @@ export const CourseForm = () => {
 
     return (
         <>
-        <div>
-            <Button
-                color="secondary"
-                onClick={showModal}
-            >
-                New Course
-            </Button>
-            </div>
-            <Modal
-                isOpen={isOpen}
-                // onHide={hideModal}
-                centered
-                fullscreen="md"
-                size="lg"
-            >
+            <Form style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
                 <ModalHeader>
                     Register New Course
                 </ModalHeader>
@@ -100,7 +79,7 @@ export const CourseForm = () => {
                     </FormGroup>
                 </ModalBody>
                 <ModalFooter>
-                    <Button
+                    <button
                         color="primary"
                         onClick={(evt) => {
                             evt.preventDefault()
@@ -114,14 +93,15 @@ export const CourseForm = () => {
 
                             // Send POST request to your API
                             createCourse(course)
+                            .then(history.push("/"))
                         }
                         }
                     >
                         Submit
-                    </Button>
+                    </button>
                     {' '}
                 </ModalFooter>
-            </Modal>
+            </Form>
         </>
     )
 }

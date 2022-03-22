@@ -17,24 +17,24 @@ export const ScoresList = () => {
 
     return(
         <>
-        <Button
+        <button
             onClick={
                 () => 
                 history.push("/scores/new")
             }
         >
             New Score
-        </Button>
-        <Button
+        </button>
+        <button
             onClick={showFinalFormFunction}
         >
             Final Score
-        </Button>
-        <Button
+        </button>
+        <button
             onClick={showTableFormFunction}
         >
             Hole_by_Hole
-        </Button>
+        </button>
         {showFinalForm && (
             <FinalScoreList/>
         )}

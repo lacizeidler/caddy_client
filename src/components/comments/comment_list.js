@@ -99,7 +99,7 @@ export const CommentList = () => {
                         onChange={changeCommentState}
                     />
                 </FormGroup>
-                <Button
+                <button
                     onClick={evt => {
                         // Prevent form from being submitted
                         evt.preventDefault()
@@ -111,11 +111,12 @@ export const CommentList = () => {
 
                         // Send POST request to your API
                         createComment(comment)
-                            .then(() => history.push("/"))
+                        getPostById(postId)
+                        .then(setPost)
                     }}
                 >
                     Submit
-                </Button>
+                </button>
             </Form>
         </>
     )

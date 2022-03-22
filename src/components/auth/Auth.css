@@ -49,9 +49,10 @@ fieldset {
 .form--login {
     background-size: cover;
     background-position-x: center;
+    background-image: url('../img/login.png');
     z-index: 1;
-    min-height: 25rem;
-    min-width: 45rem;
+    min-height: 50%;
+    min-width: 100%;
     padding: 0 5rem;
     background-color: hsla(0,0%,100%,0.75);
     background-blend-mode: overlay;

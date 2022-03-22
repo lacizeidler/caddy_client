@@ -52,13 +52,13 @@ export const PostList = () => {
 
     return (
         <>
-            <Button
+            <button
                 onClick={
                     () => {
                         history.push("/new/post")
                     }
                 }
-            >New Post</Button>
+            >New Post</button>
             {
                 posts.map(post => {
                     return <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
@@ -85,18 +85,18 @@ export const PostList = () => {
             
                             {
                                 post.likes.length === 0 
-                                ? <Button
+                                ? <button
                                 onClick={evt => {
                                     evt.preventDefault()
                                     createPostLike(post.id)
                                 }}
                                 >
                                     <BsHeart/>
-                                </Button>
+                                </button>
                                 :
                                 post.likes.map(likeObj => {
                                     if (likeObj.id === currentGolfer.id) {
-                                        return <Button key={likeObj.id}
+                                        return <button key={likeObj.id}
                                         onClick={evt => {
                                             evt.preventDefault()
                                             deletePostLike(post.id)
@@ -104,9 +104,9 @@ export const PostList = () => {
                                         >
                                             <BsFillHeartFill />
                                             {post.likes.length}
-                                        </Button>
+                                        </button>
                                     } else {
-                                        return <Button key={likeObj.id}
+                                        return <button key={likeObj.id}
                                         onClick={evt => {
                                             evt.preventDefault()
                                             createPostLike(post.id)
@@ -114,12 +114,12 @@ export const PostList = () => {
                                         >
                                             <BsHeart/>
                                             {post.likes.length}
-                                        </Button>
+                                        </button>
                                     }
                                 })
                             }
 
-                            <Button
+                            <button
                                 onClick={
                                     () => {
                                         history.push(`/posts/comments/${post.id}`)
@@ -127,7 +127,7 @@ export const PostList = () => {
                                 }
                             >
                                 <BiCommentDetail />
-                            </Button>
+                            </button>
                         </CardBody>
                     </Card>
                 })

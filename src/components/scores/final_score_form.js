@@ -58,7 +58,15 @@ export const FinalScoreForm = () => {
                             })
                         }
                     </Input>
-                    <CourseForm/>
+                    <button 
+                        onClick={
+                            () => {
+                                history.push("/new/course")
+                            }
+                        }
+                    >
+                        New Course
+                    </button>
                 </FormGroup>
                 <FormGroup>
                     <Label for="exampleText">
@@ -121,7 +129,7 @@ export const FinalScoreForm = () => {
 
                     // Send FINALSCORE request to your API
                     createFinalScore(finalScore)
-                        .then(() => history.push("/"))
+                        .then(() => history.push("/scores"))
                 }}
                 >
                     Submit
