@@ -3,6 +3,7 @@ import { Card, CardBody, CardSubtitle, CardText, Button } from 'reactstrap';
 import { getSharedFinalScores } from "./score_manager";
 import { useHistory } from "react-router-dom";
 import { BiCommentDetail } from "react-icons/bi"
+import { FinalScoreLikes } from "./final_score_likes";
 
 export const SharedFinalScoreList = () => {
     const [finalScores, setFinalScores] = useState([])
@@ -66,16 +67,18 @@ export const SharedFinalScoreList = () => {
                             <CardText>
                                 Golf Course: {score.course.name}
                             </CardText>
-                        </CardBody>
-                        <button
+                        <FinalScoreLikes score={score} setFinalScores={setFinalScores}/>
+                        <Button
+                            color="success"
                             onClick={
                                 () => {
                                     history.push(`/final_scores/comments/${score.id}`)
                                 }
                             }
                         >
-                            <BiCommentDetail />
-                        </button>
+                            Comments <BiCommentDetail />
+                        </Button>
+                        </CardBody>
                     </Card>
                 })
             }

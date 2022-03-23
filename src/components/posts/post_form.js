@@ -29,7 +29,8 @@ export const PostForm = () => {
 
     return (
         <>
-            <Form>
+        <h2 style={{ "margin": "2%" }}>New Post</h2>
+            <Form style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
                 <FormGroup>
                     <Label for="exampleText">
                         Golf Course
@@ -51,6 +52,7 @@ export const PostForm = () => {
                         }
                     </Input>
                     <Button
+                        color="success"
                         onClick={
                             () => {
                                 history.push("/new/course")
@@ -65,6 +67,7 @@ export const PostForm = () => {
                         Content
                     </Label>
                     <Input
+                        style={{"height": "200px"}}
                         id="exampleText"
                         name="content"
                         type="textarea"
@@ -87,6 +90,7 @@ export const PostForm = () => {
                     />
                 </FormGroup>
                 <Button
+                    color="success"
                     onClick={evt => {
                         // Prevent form from being submitted
                         evt.preventDefault()

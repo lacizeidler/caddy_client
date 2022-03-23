@@ -55,7 +55,8 @@ export const FinalScoreForm = () => {
             >
                 Hole_by_Hole
             </Button>
-            <Form>
+            <h2 style={{"margin": "2%"}}>New Final Score</h2>
+            <Form style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
                 <FormGroup>
                     <Label for="exampleText">
                         Golf Course
@@ -76,7 +77,8 @@ export const FinalScoreForm = () => {
                             })
                         }
                     </Input>
-                    <button
+                    <Button
+                        color="success"
                         onClick={
                             () => {
                                 history.push("/new/course")
@@ -84,7 +86,7 @@ export const FinalScoreForm = () => {
                         }
                     >
                         New Course
-                    </button>
+                    </Button>
                 </FormGroup>
                 <FormGroup>
                     <Label for="exampleText">
@@ -132,6 +134,7 @@ export const FinalScoreForm = () => {
                     />
                 </FormGroup>
                 <Button
+                    color="success"
                     onClick={evt => {
                         // Prevent form from being submitted
                         evt.preventDefault()

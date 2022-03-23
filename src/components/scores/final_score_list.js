@@ -15,6 +15,19 @@ export const FinalScoreList = () => {
         []
     )
 
+    const deleteFinalScores = (id) => {
+        fetch(`http://localhost:8000/final_scores/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("ch_token")}`
+            }
+        })
+            .then(() => {
+                getFinalScores()
+                    .then(setFinalScores)
+            })
+    }
+
     return (
         <>
             <Button
@@ -66,6 +79,16 @@ export const FinalScoreList = () => {
                                 Golf Course: {score.course.name}
                             </CardText>
                         </CardBody>
+                        <Button
+                            color="danger"
+                            onClick={
+                                () => {
+                                    deleteFinalScores(parseInt(score.id))
+                                }
+                            }
+                        >
+                            Delete
+                        </Button>
                     </Card>
                 })
             }
