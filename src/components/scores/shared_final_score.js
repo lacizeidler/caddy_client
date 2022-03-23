@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Card, CardBody, CardSubtitle, CardText, Button } from 'reactstrap';
 import { getSharedFinalScores } from "./score_manager";
 import { useHistory } from "react-router-dom";
+import { BiCommentDetail } from "react-icons/bi"
 
 export const SharedFinalScoreList = () => {
     const [finalScores, setFinalScores] = useState([])
@@ -10,14 +11,14 @@ export const SharedFinalScoreList = () => {
     useEffect(
         () => {
             getSharedFinalScores()
-            .then(setFinalScores)
+                .then(setFinalScores)
         },
         []
     )
 
-    return(
+    return (
         <>
-        <Button
+            <Button
                 color="success"
                 size="sm"
                 onClick={
@@ -46,27 +47,36 @@ export const SharedFinalScoreList = () => {
             >Table Scores</Button>
             {
                 finalScores.map(score => {
-                      return <Card key={score.id} style={{"border": "grey solid 1px", "margin": "2%", "padding": "2%"}}>
+                    return <Card key={score.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
                         <CardBody>
                             <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
+                                className="mb-2 text-muted"
+                                tag="h6"
                             >
-                            {score.date}
+                                {score.date}
                             </CardSubtitle>
                         </CardBody>
                         <CardBody>
                             <CardText>
-                            Par: {score.par}
+                                Par: {score.par}
                             </CardText>
                             <CardText>
-                            Score: {score.score}
+                                Score: {score.score}
                             </CardText>
                             <CardText>
-                            Golf Course: {score.course.name}
+                                Golf Course: {score.course.name}
                             </CardText>
                         </CardBody>
-                        </Card>
+                        <button
+                            onClick={
+                                () => {
+                                    history.push(`/final_scores/comments/${score.id}`)
+                                }
+                            }
+                        >
+                            <BiCommentDetail />
+                        </button>
+                    </Card>
                 })
             }
         </>

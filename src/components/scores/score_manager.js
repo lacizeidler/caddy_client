@@ -86,3 +86,12 @@ export const getHoleByHoleById = (id) => {
     })
         .then(response => response.json())
 }
+
+export const getFinalScoreById = (id) => {
+    return fetch(`http://localhost:8000/final_scores/${id}`, {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("ch_token")}`
+        }
+    })
+        .then(response => response.json())
+}
