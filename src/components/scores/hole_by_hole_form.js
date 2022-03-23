@@ -16,105 +16,109 @@ export const HoleByHoleForm = () => {
     const [newIndividualHole1, setNewIndividualHole1] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 1
     })
     const [newIndividualHole2, setNewIndividualHole2] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 2
     })
     const [newIndividualHole3, setNewIndividualHole3] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 3
     })
     const [newIndividualHole4, setNewIndividualHole4] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 4
     })
     const [newIndividualHole5, setNewIndividualHole5] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 5
     })
     const [newIndividualHole6, setNewIndividualHole6] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 6
     })
     const [newIndividualHole7, setNewIndividualHole7] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 7
     })
     const [newIndividualHole8, setNewIndividualHole8] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 8
     })
     const [newIndividualHole9, setNewIndividualHole9] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 9
     })
     const [newIndividualHole10, setNewIndividualHole10] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 10
     })
     const [newIndividualHole11, setNewIndividualHole11] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 11
     })
     const [newIndividualHole12, setNewIndividualHole12] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 12
     })
     const [newIndividualHole13, setNewIndividualHole13] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 13
     })
     const [newIndividualHole14, setNewIndividualHole14] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 14
     })
     const [newIndividualHole15, setNewIndividualHole15] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 15
     })
     const [newIndividualHole16, setNewIndividualHole16] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 16
     })
     const [newIndividualHole17, setNewIndividualHole17] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 17
     })
     const [newIndividualHole18, setNewIndividualHole18] = useState({
         par: 0,
         score: 0,
-        hole_num: 0
+        hole_num: 18
     })
+    const individual9HoleArray = [newIndividualHole1, newIndividualHole2, newIndividualHole3, newIndividualHole4, newIndividualHole5, newIndividualHole6, newIndividualHole7, newIndividualHole8, newIndividualHole9]
     const individualHoleArray = [newIndividualHole1, newIndividualHole2, newIndividualHole3, newIndividualHole4, newIndividualHole5, newIndividualHole6, newIndividualHole7, newIndividualHole8, newIndividualHole9, newIndividualHole10, newIndividualHole11, newIndividualHole12, newIndividualHole13, newIndividualHole14, newIndividualHole15, newIndividualHole16, newIndividualHole17, newIndividualHole18]
     const setIndividualHoleArray = [setNewIndividualHole1, setNewIndividualHole2, setNewIndividualHole3, setNewIndividualHole4, setNewIndividualHole5, setNewIndividualHole6, setNewIndividualHole7, setNewIndividualHole8, setNewIndividualHole9, setNewIndividualHole10, setNewIndividualHole11, setNewIndividualHole12, setNewIndividualHole13, setNewIndividualHole14, setNewIndividualHole15, setNewIndividualHole16, setNewIndividualHole17, setNewIndividualHole18]
+    const setIndividual9HoleArray = [setNewIndividualHole1, setNewIndividualHole2, setNewIndividualHole3, setNewIndividualHole4, setNewIndividualHole5, setNewIndividualHole6, setNewIndividualHole7, setNewIndividualHole8, setNewIndividualHole9]
     const [numOfHoles, setNumOfHoles] = useState([])
     const [courses, setCourses] = useState([])
     const [show9, setShow9] = useState(false)
     const [show18, setShow18] = useState(false)
     const show9Function = (evt) => {
         setShow9(!show9);
+        setShow18(false);
         changeHoleByHoleState(evt)
     }
     const show18Function = (evt) => {
         setShow18(!show18);
+        setShow9(false);
         changeHoleByHoleState(evt)
     }
 
@@ -155,23 +159,23 @@ export const HoleByHoleForm = () => {
             return <tr key={i}>
                 <th scope="row"
                     name="hole_num"
-                    value={i + 1}>
+                    value={individualHoleArray[i].hole_num}>
                     {i + 1}
                 </th>
                 <td>
-                    <input
+                    <Input
                         type="number"
                         name="par"
                         value={individualHoleArray[i].par}
                         onChange={
-                            (evt) => {
+                            (evt) => { 
                                 changeIndividualHoleState(evt, i)
                             }
                         }
                     />
                 </td>
                 <td>
-                    <input
+                    <Input
                         type="number"
                         name="score"
                         value={individualHoleArray[i].score}
@@ -187,15 +191,15 @@ export const HoleByHoleForm = () => {
     }
 
     const ListOf9 = () => {
-        return individualHoleArray.slice(0, 8).map((hole, i) => {
+        return individualHoleArray.slice(0, 9).map((hole, i) => {
             return <tr key={i}>
                 <th scope="row"
                     name="hole_num"
-                    value={i + 1}>
+                    value={individualHoleArray[i].hole_num}>
                     {i + 1}
                 </th>
                 <td>
-                    <input
+                    <Input
                         type="number"
                         name="par"
                         value={individualHoleArray[i].par}
@@ -207,7 +211,7 @@ export const HoleByHoleForm = () => {
                     />
                 </td>
                 <td>
-                    <input
+                    <Input
                         type="number"
                         name="score"
                         value={individualHoleArray[i].score}
@@ -245,7 +249,7 @@ export const HoleByHoleForm = () => {
             >
                 Hole_by_Hole
             </Button>
-            <Form>
+            <Form style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
                 <FormGroup>
                     <Label for="exampleText">
                         Golf Course
@@ -266,7 +270,8 @@ export const HoleByHoleForm = () => {
                             })
                         }
                     </Input>
-                    <button
+                    <Button
+                        color="success"
                         onClick={
                             () => {
                                 history.push("/new/course")
@@ -274,13 +279,14 @@ export const HoleByHoleForm = () => {
                         }
                     >
                         New Course
-                    </button>
+                    </Button>
                 </FormGroup>
                 <FormGroup>
                     <Label for="exampleText">
                         Number of Holes
                     </Label>
-                    <button
+                    <Button
+                        color="success"
                         name="num_of_holes_id"
                         value={found1?.id}
                         onClick={(evt) => {
@@ -289,8 +295,9 @@ export const HoleByHoleForm = () => {
                         }}
                     >
                         9
-                    </button>
-                    <button
+                    </Button>
+                    <Button
+                        color="success"
                         name="num_of_holes_id"
                         value={found2?.id}
                         onClick={(evt) => {
@@ -299,21 +306,18 @@ export const HoleByHoleForm = () => {
                         }}
                     >
                         18
-                    </button>
+                    </Button>
                 </FormGroup>
                 <FormGroup>
                     {
-                        show9 && (
-                            <ListOf9 />
-                        )
+                        show9 ? <ListOf9/> : ""
                     }
                     {
-                        show18 && (
-                            <ListOf18 />
-                        )
+                        show18 ? <ListOf18/> : ""
                     }
                 </FormGroup>
-                <button
+                <Button
+                    color="success"
                     onClick={evt => {
                         // Prevent form from being submitted
                         evt.preventDefault()
@@ -331,7 +335,7 @@ export const HoleByHoleForm = () => {
                     }}
                 >
                     Submit
-                </button>
+                </Button>
             </Form>
         </>
     )

@@ -7,6 +7,15 @@ export const getPosts = () => {
         .then(response => response.json())
 }
 
+export const getUserPosts = () => {
+    return fetch("http://localhost:8000/posts/userposts", {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("ch_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const getCourses = () => {
     return fetch("http://localhost:8000/golf_courses", {
         headers:{

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react/cjs/react.development"
 import { useParams, useHistory } from "react-router-dom"
 import { getFinalScoreById } from "../scores/score_manager"
 import { Card, CardBody, CardSubtitle, CardText, CardTitle, Form, FormGroup, Input, Label, Button } from 'reactstrap';
-import { createComment } from "./comment_manager";
+import { createFinalComment } from "./comment_manager";
 
 export const FinalComments = () => {
     const history = useHistory()
@@ -59,14 +59,14 @@ export const FinalComments = () => {
             <CardTitle
                 className="mb-2 text-muted"
                 tag="h4"
-                style={{ "margin": "1%" }}
+                style={{ "margin": "2%" }}
             >
                 Comments
             </CardTitle>
 
             {
                 final.comment_final?.map(comment => {
-                    return <div key={comment.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
+                    return <div key={comment.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
                         <Card
                         >
                             <CardBody>
@@ -84,7 +84,7 @@ export const FinalComments = () => {
                     </div>
                 })
             }
-            <Form style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
+            <Form style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
                 <FormGroup>
                     <Label for="exampleText">
                         New Comment
@@ -111,7 +111,7 @@ export const FinalComments = () => {
                         }
 
                         // Send POST request to your API
-                        createComment(comment)
+                        createFinalComment(comment)
                         getFinalScoreById(finalId)
                             .then(setFinal)
                     }}

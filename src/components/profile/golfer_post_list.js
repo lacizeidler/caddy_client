@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { getSingleGolfer } from "./golfer_manager"
-import { getPosts } from "../posts/post_manager"
+import { getUserPosts } from "../posts/post_manager"
 import { Card, CardBody, CardSubtitle, CardText, Button } from 'reactstrap';
 import { useHistory } from "react-router-dom";
 import { BsTrash } from "react-icons/bs";
@@ -9,20 +8,11 @@ import { FiEdit } from "react-icons/fi";
 
 export const GolferPostList = () => {
     const [posts, setPosts] = useState([])
-    const [currentUser, setCurrentUser] = useState({})
     const history = useHistory()
 
     useEffect(
         () => {
-            getSingleGolfer()
-                .then(setCurrentUser)
-        },
-        []
-    )
-
-    useEffect(
-        () => {
-            getPosts()
+            getUserPosts()
                 .then(setPosts)
         },
         []
@@ -36,7 +26,7 @@ export const GolferPostList = () => {
             }
         })
             .then(() => {
-                getPosts()
+                getUserPosts()
                     .then(setPosts)
             })
     }
@@ -44,7 +34,7 @@ export const GolferPostList = () => {
     return (
         <>
             {
-                posts.filter(post => post.golfer_id === currentUser.user.id).map(filteredPost => (
+                posts.map(filteredPost => (
                     <Card key={filteredPost.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
                         <CardBody>
                             <CardSubtitle
@@ -52,6 +42,12 @@ export const GolferPostList = () => {
                                 tag="h6"
                             >
                                 {filteredPost.date}
+                            </CardSubtitle>
+                            <CardSubtitle
+                                className="mb-2 text-muted"
+                                tag="h6"
+                            >
+                                {filteredPost.course.name}
                             </CardSubtitle>
                         </CardBody>
                         <img
