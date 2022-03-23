@@ -50,7 +50,7 @@ export const PostForm = () => {
                             })
                         }
                     </Input>
-                    <button
+                    <Button
                         onClick={
                             () => {
                                 history.push("/new/course")
@@ -58,7 +58,7 @@ export const PostForm = () => {
                         }
                     >
                         New Course
-                    </button>
+                    </Button>
                 </FormGroup>
                 <FormGroup>
                     <Label for="exampleText">

@@ -37,6 +37,24 @@ export const FinalScoreForm = () => {
 
     return (
         <>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/form/final_score")
+                }}
+            >
+                Final Score
+            </Button>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/form/hole_table")
+                }}
+            >
+                Hole_by_Hole
+            </Button>
             <Form>
                 <FormGroup>
                     <Label for="exampleText">
@@ -46,19 +64,19 @@ export const FinalScoreForm = () => {
                         className="mb-3"
                         type="select"
                         name="course_id"
-                        value={currentFinalScore.course_id} 
+                        value={currentFinalScore.course_id}
                         onChange={changeFinalScoreState}
                     >
                         <option value={0}>Select a golf course ...</option>
                         {
                             courses.map(course => {
                                 return <option key={course.id} value={course.id}>
-                            {course.name}
-                        </option>
+                                    {course.name}
+                                </option>
                             })
                         }
                     </Input>
-                    <button 
+                    <button
                         onClick={
                             () => {
                                 history.push("/new/course")
@@ -76,15 +94,15 @@ export const FinalScoreForm = () => {
                         className="mb-3"
                         type="select"
                         name="num_of_holes_id"
-                        value={currentFinalScore.num_of_holes_id} 
+                        value={currentFinalScore.num_of_holes_id}
                         onChange={changeFinalScoreState}
                     >
                         <option value={0}>Select num of holes played ...</option>
                         {
                             holes.map(hole => {
                                 return <option key={hole.id} value={hole.id}>
-                            {hole.holes}
-                        </option>
+                                    {hole.holes}
+                                </option>
                             })
                         }
                     </Input>
@@ -114,23 +132,23 @@ export const FinalScoreForm = () => {
                     />
                 </FormGroup>
                 <Button
-                onClick={evt => {
-                    // Prevent form from being submitted
-                    evt.preventDefault()
+                    onClick={evt => {
+                        // Prevent form from being submitted
+                        evt.preventDefault()
 
-                    const finalScore = {
-                        date: new Date().toISOString().slice(0,10),
-                        score: currentFinalScore.score,
-                        par: currentFinalScore.par,
-                        course_id: parseInt(currentFinalScore.course_id),
-                        num_of_holes_id: parseInt(currentFinalScore.num_of_holes_id),
-                        share: currentFinalScore.share
-                    }
+                        const finalScore = {
+                            date: new Date().toISOString().slice(0, 10),
+                            score: currentFinalScore.score,
+                            par: currentFinalScore.par,
+                            course_id: parseInt(currentFinalScore.course_id),
+                            num_of_holes_id: parseInt(currentFinalScore.num_of_holes_id),
+                            share: currentFinalScore.share
+                        }
 
-                    // Send FINALSCORE request to your API
-                    createFinalScore(finalScore)
-                        .then(() => history.push("/scores"))
-                }}
+                        // Send FINALSCORE request to your API
+                        createFinalScore(finalScore)
+                            .then(() => history.push("/scores"))
+                    }}
                 >
                     Submit
                 </Button>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { Table } from 'reactstrap';
+import { useHistory } from "react-router-dom";
+import { Table, Button } from 'reactstrap';
 import { getHoleByHoleById, getHoleByHoleList } from "./score_manager"
 
 export const HoleByHoleList = () => {
     const [holeByHoles, setHoleByHoles] = useState([])
+    const history = useHistory()
     // const [table, setTable] = useState({})
 
     useEffect(
@@ -45,6 +47,33 @@ export const HoleByHoleList = () => {
 
     return (
         <>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/scores/new")
+                }}
+            >
+                New Score
+            </Button>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/list/final_score")
+                }}
+            >
+                Final Score
+            </Button>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/list/hole_table")
+                }}
+            >
+                Hole_by_Hole
+            </Button>
             <div>
                 {
                     holeByHoles.map(course => {

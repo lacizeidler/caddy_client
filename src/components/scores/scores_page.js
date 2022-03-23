@@ -1,33 +1,30 @@
-import React, { useState } from "react"
+import React from "react"
+import { useHistory } from "react-router-dom"
 import { Button } from "reactstrap"
-import { FinalScoreForm } from "./final_score_form"
-import { HoleByHoleForm } from "./hole_by_hole_form"
 
 export const ScoresPage = () => {
-    const [showFinalScore, setShowFinalScore] = useState(false)
-    const [showHoleByHoleScore, setShowHoleByHoleScore] = useState(false)
+    const history = useHistory()
 
-    const showFinalScoreFunction = () => {
-        setShowFinalScore(!showFinalScore)
-    }
-    const showHoleByHoleFunction = () => {
-        setShowHoleByHoleScore(!showHoleByHoleScore)
-    }
-
-    return(
+    return (
         <>
-        <Button
-            onClick={showFinalScoreFunction}
-        >
-            Final Score
-        </Button>
-        <Button
-            onClick={showHoleByHoleFunction}
-        >
-            Hole_by_Hole
-        </Button>
-        {showFinalScore ? <FinalScoreForm/> : ""}
-        {showHoleByHoleScore ? <HoleByHoleForm/> : ""}
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/form/final_score")
+                }}
+            >
+                Final Score
+            </Button>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/form/hole_table")
+                }}
+            >
+                Hole_by_Hole
+            </Button>
         </>
     )
 }

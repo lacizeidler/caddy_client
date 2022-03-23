@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react/cjs/react.development"
 import { useHistory } from "react-router-dom"
-import { Form, FormGroup, Input, Label } from 'reactstrap';
+import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { getNumOfHoles, getCourses } from "../posts/post_manager";
 import { createHoleByHole } from "./score_manager"
 
@@ -226,93 +226,113 @@ export const HoleByHoleForm = () => {
     const found2 = numOfHoles.find(hole => hole.id === 2)
 
     return (
-        <Form>
-            <FormGroup>
-                <Label for="exampleText">
-                    Golf Course
-                </Label>
-                <Input
-                    className="mb-3"
-                    type="select"
-                    name="course_id"
-                    value={newHoleByHole.course_id}
-                    onChange={changeHoleByHoleState}
-                >
-                    <option value={0}>Select a golf course ...</option>
-                    {
-                        courses.map(course => {
-                            return <option key={course.id} value={course.id}>
-                                {course.name}
-                            </option>
-                        })
-                    }
-                </Input>
-                <button
-                    onClick={
-                        () => {
-                            history.push("/new/course")
-                        }
-                    }
-                >
-                    New Course
-                </button>
-            </FormGroup>
-            <FormGroup>
-                <Label for="exampleText">
-                    Number of Holes
-                </Label>
-                <button
-                    name="num_of_holes_id"
-                    value={found1?.id}
-                    onClick={(evt) => {
-                        evt.preventDefault()
-                        show9Function(evt)
-                    }}
-                >
-                    9
-                </button>
-                <button
-                    name="num_of_holes_id"
-                    value={found2?.id}
-                    onClick={(evt) => {
-                        evt.preventDefault()
-                        show18Function(evt)
-                    }}
-                >
-                    18
-                </button>
-            </FormGroup>
-            <FormGroup>
-                {
-                    show9 && (
-                        <ListOf9 />
-                    )
-                }
-                {
-                    show18 && (
-                        <ListOf18 />
-                    )
-                }
-            </FormGroup>
-            <button
-                onClick={evt => {
-                    // Prevent form from being submitted
+        <>
+            <Button
+                color="success"
+                onClick={(evt) => {
                     evt.preventDefault()
-
-                    const holeByHole = {
-                        date: new Date().toISOString().slice(0, 10),
-                        course_id: parseInt(newHoleByHole.course_id),
-                        num_of_holes_id: parseInt(newHoleByHole.num_of_holes_id),
-                        share: newHoleByHole.share,
-                        holes: individualHoleArray
-                    }
-
-                    // Send POST request to your API
-                    createHoleByHole(holeByHole)
+                    history.push("/form/final_score")
                 }}
             >
-                Submit
-            </button>
-        </Form>
+                Final Score
+            </Button>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/form/hole_table")
+                }}
+            >
+                Hole_by_Hole
+            </Button>
+            <Form>
+                <FormGroup>
+                    <Label for="exampleText">
+                        Golf Course
+                    </Label>
+                    <Input
+                        className="mb-3"
+                        type="select"
+                        name="course_id"
+                        value={newHoleByHole.course_id}
+                        onChange={changeHoleByHoleState}
+                    >
+                        <option value={0}>Select a golf course ...</option>
+                        {
+                            courses.map(course => {
+                                return <option key={course.id} value={course.id}>
+                                    {course.name}
+                                </option>
+                            })
+                        }
+                    </Input>
+                    <button
+                        onClick={
+                            () => {
+                                history.push("/new/course")
+                            }
+                        }
+                    >
+                        New Course
+                    </button>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="exampleText">
+                        Number of Holes
+                    </Label>
+                    <button
+                        name="num_of_holes_id"
+                        value={found1?.id}
+                        onClick={(evt) => {
+                            evt.preventDefault()
+                            show9Function(evt)
+                        }}
+                    >
+                        9
+                    </button>
+                    <button
+                        name="num_of_holes_id"
+                        value={found2?.id}
+                        onClick={(evt) => {
+                            evt.preventDefault()
+                            show18Function(evt)
+                        }}
+                    >
+                        18
+                    </button>
+                </FormGroup>
+                <FormGroup>
+                    {
+                        show9 && (
+                            <ListOf9 />
+                        )
+                    }
+                    {
+                        show18 && (
+                            <ListOf18 />
+                        )
+                    }
+                </FormGroup>
+                <button
+                    onClick={evt => {
+                        // Prevent form from being submitted
+                        evt.preventDefault()
+
+                        const holeByHole = {
+                            date: new Date().toISOString().slice(0, 10),
+                            course_id: parseInt(newHoleByHole.course_id),
+                            num_of_holes_id: parseInt(newHoleByHole.num_of_holes_id),
+                            share: newHoleByHole.share,
+                            holes: individualHoleArray
+                        }
+
+                        // Send POST request to your API
+                        createHoleByHole(holeByHole)
+                    }}
+                >
+                    Submit
+                </button>
+            </Form>
+        </>
     )
 }

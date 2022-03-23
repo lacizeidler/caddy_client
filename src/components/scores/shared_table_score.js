@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import { getSharedHoleByHole } from "./score_manager"
+import { useHistory } from "react-router-dom";
 
 export const SharedHoleByHoleList = () => {
     const [holeByHoles, setHoleByHoles] = useState([])
+    const history = useHistory()
 
     useEffect(
         () => {
@@ -15,6 +17,33 @@ export const SharedHoleByHoleList = () => {
 
     return (
         <>
+        <Button
+                size="sm"
+                color="success"
+                onClick={
+                    () => {
+                        history.push("/new/post")
+                    }
+                }
+            >New Post</Button>
+            <Button
+                size="sm"
+                color="success"
+                onClick={
+                    () => {
+                        history.push("/shared/final_score")
+                    }
+                }
+            >Final Scores</Button>
+            <Button
+                size="sm"
+                color="success"
+                onClick={
+                    () => {
+                        history.push("/shared/table_score")
+                    }
+                }
+            >Table Scores</Button>
             <div>
                 {
                     holeByHoles.map(course => {

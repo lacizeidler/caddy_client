@@ -1,45 +1,72 @@
 import React, { useState, useEffect } from "react"
-import { getSingleGolfer } from "../profile/golfer_manager"
-import { getPosts } from "../posts/post_manager"
 import { Card, CardBody, CardSubtitle, CardText, Button } from 'reactstrap';
 import { getFinalScores } from "./score_manager";
+import { useHistory } from "react-router-dom";
 
 export const FinalScoreList = () => {
     const [finalScores, setFinalScores] = useState([])
+    const history = useHistory()
 
     useEffect(
         () => {
             getFinalScores()
-            .then(setFinalScores)
+                .then(setFinalScores)
         },
         []
     )
 
-    return(
+    return (
         <>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/scores/new")
+                }}
+            >
+                New Score
+            </Button>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/list/final_score")
+                }}
+            >
+                Final Score
+            </Button>
+            <Button
+                color="success"
+                onClick={(evt) => {
+                    evt.preventDefault()
+                    history.push("/list/hole_table")
+                }}
+            >
+                Hole_by_Hole
+            </Button>
             {
                 finalScores.map(score => {
-                      return <Card key={score.id} style={{"border": "grey solid 1px", "margin": "2%", "padding": "2%"}}>
+                    return <Card key={score.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
                         <CardBody>
                             <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
+                                className="mb-2 text-muted"
+                                tag="h6"
                             >
-                            {score.date}
+                                {score.date}
                             </CardSubtitle>
                         </CardBody>
                         <CardBody>
                             <CardText>
-                            Par: {score.par}
+                                Par: {score.par}
                             </CardText>
                             <CardText>
-                            Score: {score.score}
+                                Score: {score.score}
                             </CardText>
                             <CardText>
-                            Golf Course: {score.course.name}
+                                Golf Course: {score.course.name}
                             </CardText>
                         </CardBody>
-                        </Card>
+                    </Card>
                 })
             }
         </>
