@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react/cjs/react.development"
 import { useParams, useHistory } from "react-router-dom"
 import { getHoleByHoleById } from "../scores/score_manager"
-import { Card, CardBody, CardSubtitle, CardText, CardTitle, Form, FormGroup, Input, Label, Button } from 'reactstrap';
-import { createComment } from "./comment_manager";
+import { Card, CardBody, CardSubtitle, CardText, CardTitle, Form, FormGroup, Input, Label, Button, Table } from 'reactstrap';
+import { createComment, createTableComment } from "./comment_manager";
 
 export const TableComments = () => {
     const history = useHistory()
@@ -32,29 +32,46 @@ export const TableComments = () => {
 
     return (
         <>
-            <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
-                <CardBody>
-                    <CardTitle tag="h5">
-                        {post.golfer?.user.first_name} {post.golfer?.user.last_name}
-                    </CardTitle>
-                    <CardSubtitle
-                        className="mb-2 text-muted"
-                        tag="h6"
-                    >
-                        {post.date}
-                    </CardSubtitle>
-                </CardBody>
-                <img
-                    alt="Card image cap"
-                    src={post?.image_url}
-                    width="100%"
-                />
-                <CardBody>
-                    <CardText>
-                        {post.content}
-                    </CardText>
-                </CardBody>
-            </Card>
+                <div style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }} key={table.id}>
+                    <h4>Date: {table.date}</h4>
+                    <h4>Course: {table?.course?.name}</h4>
+                    <h4># of Holes: {table?.num_of_holes?.holes}</h4>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Hole #
+                                </th>
+                                <th>
+                                    Par
+                                </th>
+                                <th>
+                                    Score
+                                </th>
+                            </tr>
+                        </thead>
+                    </Table>
+                    {table?.holes_for_hole_by_hole?.map(hole => {
+                        return <div key={hole.id}>
+                            <Table hover>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            {hole.hole_num}
+                                        </th>
+                                        <th scope="row">
+                                            {hole.par}
+                                        </th>
+                                        <th scope="row">
+                                            {hole.score}
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </Table>
+                        </div>
+                    })}
+            </div>
+
             <CardTitle
                 className="mb-2 text-muted"
                 tag="h4"
@@ -64,7 +81,7 @@ export const TableComments = () => {
             </CardTitle>
 
             {
-                post.comment_post?.map(comment => {
+                table.comment_table?.map(comment => {
                     return <div key={comment.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
                         <Card
                         >
@@ -106,13 +123,13 @@ export const TableComments = () => {
 
                         const comment = {
                             comment: currentComment.comment,
-                            post_id: currentComment.post_id
+                            hole_by_hole_id: currentComment.hole_by_hole_id
                         }
 
                         // Send POST request to your API
-                        createComment(comment)
-                        getPostById(postId)
-                        .then(setPost)
+                        createTableComment(comment)
+                        getHoleByHoleById(tableId)
+                            .then(setTable)
                     }}
                 >
                     Submit

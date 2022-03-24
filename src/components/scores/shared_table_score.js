@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react"
 import { Table, Button } from 'reactstrap';
 import { getSharedHoleByHole } from "./score_manager"
 import { useHistory } from "react-router-dom";
+import { BiCommentDetail } from "react-icons/bi"
+import { TableLikes } from "./table_likes";
 
 export const SharedHoleByHoleList = () => {
     const [holeByHoles, setHoleByHoles] = useState([])
@@ -17,7 +19,7 @@ export const SharedHoleByHoleList = () => {
 
     return (
         <>
-        <Button
+            <Button
                 size="sm"
                 color="success"
                 onClick={
@@ -49,7 +51,7 @@ export const SharedHoleByHoleList = () => {
                     holeByHoles.map(course => {
                         return <div style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }} key={course.id}>
                             <h4>Date: {course.date}</h4>
-                            <h4>Course: {course.course.name}</h4>
+                            <h4>Course: {course?.course?.name}</h4>
                             <h4># of Holes: {course.num_of_holes.holes}</h4>
                             <Table>
                                 <thead>
@@ -85,6 +87,17 @@ export const SharedHoleByHoleList = () => {
                                     </Table>
                                 </div>
                             })}
+                            <TableLikes course={course} setHoleByHoles={setHoleByHoles}/>
+                            <Button
+                                color="success"
+                                onClick={
+                                    () => {
+                                        history.push(`/hole_by_holes/comments/${course.id}`)
+                                    }
+                                }
+                            >
+                                Comments <BiCommentDetail />
+                            </Button>
                         </div>
                     })
                 }

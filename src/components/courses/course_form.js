@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import { createCourse } from "./course_manager"
 import { Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, FormGroup, Form } from 'reactstrap';
+import { useHistory } from "react-router-dom";
 
 export const CourseForm = () => {
+    const history = useHistory()
     const [newCourse, setNewCourse] = useState({
         name: "",
         address: "",

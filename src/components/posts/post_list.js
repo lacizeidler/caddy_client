@@ -5,11 +5,11 @@ import { useHistory } from 'react-router-dom';
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import { BiCommentDetail } from "react-icons/bi"
 import { getSingleGolfer } from '../profile/golfer_manager';
+import { PostLikes } from './post_likes';
 
 export const PostList = () => {
     const [posts, setPosts] = useState([])
     const history = useHistory()
-    const [currentGolfer, setCurrentGolfer] = useState({})
 
     useEffect(
         () => {
@@ -18,37 +18,6 @@ export const PostList = () => {
         },
         []
     )
-
-    useEffect(
-        () => {
-            getSingleGolfer().
-                then(setCurrentGolfer)
-        },
-        []
-    )
-
-    const deletePostLike = (id) => {
-        fetch(`http://localhost:8000/posts/${id}/unlike`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Token ${localStorage.getItem("ch_token")}`
-            }
-        })
-        getPosts()
-            .then(setPosts)
-    }
-
-    const createPostLike = (id) => {
-        fetch(`http://localhost:8000/posts/${id}/like`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Token ${localStorage.getItem("ch_token")}`
-            }
-        })
-        getPosts()
-            .then(setPosts)
-    }
 
     return (
         <>
@@ -81,7 +50,7 @@ export const PostList = () => {
             >Table Scores</Button>
             {
                 posts.map(post => {
-                    return <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
+                    return <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
                         <CardBody>
                             <CardTitle tag="h5">
                                 {post.golfer.user.first_name} {post.golfer.user.last_name}
@@ -91,6 +60,12 @@ export const PostList = () => {
                                 tag="h6"
                             >
                                 {post.date}
+                            </CardSubtitle>
+                            <CardSubtitle
+                                className="mb-2 text-muted"
+                                tag="h6"
+                            >
+                                {post.course.name}
                             </CardSubtitle>
                         </CardBody>
                         <img
@@ -102,52 +77,17 @@ export const PostList = () => {
                             <CardText>
                                 {post.content}
                             </CardText>
-            
-                            {
-                                post.likes.length === 0 
-                                ? <button
-                                onClick={evt => {
-                                    evt.preventDefault()
-                                    createPostLike(post.id)
-                                }}
-                                >
-                                    <BsHeart/>
-                                </button>
-                                :
-                                post.likes.map(likeObj => {
-                                    if (likeObj.id === currentGolfer.id) {
-                                        return <button key={likeObj.id}
-                                        onClick={evt => {
-                                            evt.preventDefault()
-                                            deletePostLike(post.id)
-                                        }}
-                                        >
-                                            <BsFillHeartFill />
-                                            {post.likes.length}
-                                        </button>
-                                    } else {
-                                        return <button key={likeObj.id}
-                                        onClick={evt => {
-                                            evt.preventDefault()
-                                            createPostLike(post.id)
-                                        }}
-                                        >
-                                            <BsHeart/>
-                                            {post.likes.length}
-                                        </button>
-                                    }
-                                })
-                            }
-
-                            <button
+                            <PostLikes post={post} setPosts={setPosts}/>
+                            <Button
+                                color='success'
                                 onClick={
                                     () => {
                                         history.push(`/posts/comments/${post.id}`)
                                     }
                                 }
                             >
-                                <BiCommentDetail />
-                            </button>
+                                Comments <BiCommentDetail />
+                            </Button>
                         </CardBody>
                     </Card>
                 })

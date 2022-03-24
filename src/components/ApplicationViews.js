@@ -15,6 +15,7 @@ import { HoleByHoleList } from "./scores/hole_by_hole_list"
 import { FinalScoreList } from "./scores/final_score_list"
 import { HoleByHoleForm } from "./scores/hole_by_hole_form"
 import { FinalComments } from "./comments/final_comments"
+import { TableComments } from "./comments/table_comments"
 
 export const ApplicationViews = () => {
     return <>
@@ -45,6 +46,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/final_scores/comments/:finalId(\d+)">
                     <FinalComments/>
+            </Route>
+            <Route exact path="/hole_by_holes/comments/:tableId(\d+)">
+                    <TableComments/>
             </Route>
             <Route exact path="/new/course">
                     <CourseForm/>

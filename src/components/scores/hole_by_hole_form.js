@@ -154,6 +154,14 @@ export const HoleByHoleForm = () => {
         setIndividualHoleArray[i](copy)
     }
 
+    const changeIndividual9HoleState = (domEvent, i) => {
+        const copy = { ...individual9HoleArray[i] }
+        const key = domEvent.target.name
+        const value = domEvent.target.value
+        copy[key] = value
+        setIndividual9HoleArray[i](copy)
+    }
+
     const ListOf18 = () => {
         return individualHoleArray.map((hole, i) => {
             return <tr key={i}>
@@ -191,21 +199,21 @@ export const HoleByHoleForm = () => {
     }
 
     const ListOf9 = () => {
-        return individualHoleArray.slice(0, 9).map((hole, i) => {
+        return individual9HoleArray.map((hole, i) => {
             return <tr key={i}>
                 <th scope="row"
                     name="hole_num"
-                    value={individualHoleArray[i].hole_num}>
+                    value={individual9HoleArray[i].hole_num}>
                     {i + 1}
                 </th>
                 <td>
                     <Input
                         type="number"
                         name="par"
-                        value={individualHoleArray[i].par}
+                        value={individual9HoleArray[i].par}
                         onChange={
                             (evt) => {
-                                changeIndividualHoleState(evt, i)
+                                changeIndividual9HoleState(evt, i)
                             }
                         }
                     />
@@ -214,10 +222,10 @@ export const HoleByHoleForm = () => {
                     <Input
                         type="number"
                         name="score"
-                        value={individualHoleArray[i].score}
+                        value={individual9HoleArray[i].score}
                         onChange={
                             (evt) => {
-                                changeIndividualHoleState(evt, i)
+                                changeIndividual9HoleState(evt, i)
                             }
                         }
                     />
@@ -249,6 +257,7 @@ export const HoleByHoleForm = () => {
             >
                 Hole_by_Hole
             </Button>
+            <h2 style={{"margin": "2%"}}>Hole by Hole</h2>
             <Form style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
                 <FormGroup>
                     <Label for="exampleText">
@@ -327,7 +336,7 @@ export const HoleByHoleForm = () => {
                             course_id: parseInt(newHoleByHole.course_id),
                             num_of_holes_id: parseInt(newHoleByHole.num_of_holes_id),
                             share: newHoleByHole.share,
-                            holes: individualHoleArray
+                            holes: show9 ? individual9HoleArray : individualHoleArray
                         }
 
                         // Send POST request to your API
