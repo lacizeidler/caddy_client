@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom";
 import { Table, Button, Nav, NavItem, NavLink } from 'reactstrap';
 import { getHoleByHoleById, getHoleByHoleList } from "./score_manager"
+import { ShareTable } from "./share_table";
 
 export const HoleByHoleList = () => {
     const [holeByHoles, setHoleByHoles] = useState([])
@@ -50,7 +51,7 @@ export const HoleByHoleList = () => {
             <Nav pills>
                 <NavItem style={{ "marginLeft": "2%" }}>
                     <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/scores/new">
-                        New Post
+                        New Score
                     </NavLink>
                 </NavItem>
                 <NavItem style={{ "marginLeft": "2%" }}>
@@ -115,9 +116,7 @@ export const HoleByHoleList = () => {
                             >
                                 Delete
                             </button>
-                            <button>
-                                Share
-                            </button>
+                            <ShareTable course={course}/>
                         </div>
                     })
                 }
