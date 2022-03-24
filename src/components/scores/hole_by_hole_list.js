@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom";
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Nav, NavItem, NavLink } from 'reactstrap';
 import { getHoleByHoleById, getHoleByHoleList } from "./score_manager"
 
 export const HoleByHoleList = () => {
@@ -47,33 +47,23 @@ export const HoleByHoleList = () => {
 
     return (
         <>
-            <Button
-                color="success"
-                onClick={(evt) => {
-                    evt.preventDefault()
-                    history.push("/scores/new")
-                }}
-            >
-                New Score
-            </Button>
-            <Button
-                color="success"
-                onClick={(evt) => {
-                    evt.preventDefault()
-                    history.push("/list/final_score")
-                }}
-            >
-                Final Score
-            </Button>
-            <Button
-                color="success"
-                onClick={(evt) => {
-                    evt.preventDefault()
-                    history.push("/list/hole_table")
-                }}
-            >
-                Hole_by_Hole
-            </Button>
+            <Nav pills>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/scores/new">
+                        New Post
+                    </NavLink>
+                </NavItem>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/list/final_score">
+                        Final Score
+                    </NavLink>
+                </NavItem>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/list/hole_table">
+                        Hole-by-Hole
+                    </NavLink>
+                </NavItem>
+            </Nav>
             <div>
                 {
                     holeByHoles.map(course => {

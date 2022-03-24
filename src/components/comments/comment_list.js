@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom"
 import { getPostById } from "../posts/post_manager"
 import { Card, CardBody, CardSubtitle, CardText, CardTitle, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { createComment } from "./comment_manager";
+import { DeleteEditPostComment } from "./delete_edit_post_comment";
 
 export const CommentList = () => {
     const history = useHistory()
@@ -80,6 +81,7 @@ export const CommentList = () => {
                                 </CardText>
                             </CardBody>
                         </Card>
+                        {/* <DeleteEditPostComment comment={comment}/> */}
                     </div>
                 })
             }
@@ -99,7 +101,8 @@ export const CommentList = () => {
                         onChange={changeCommentState}
                     />
                 </FormGroup>
-                <button
+                <Button
+                    color="success"
                     onClick={evt => {
                         // Prevent form from being submitted
                         evt.preventDefault()
@@ -116,7 +119,7 @@ export const CommentList = () => {
                     }}
                 >
                     Submit
-                </button>
+                </Button>
             </Form>
         </>
     )

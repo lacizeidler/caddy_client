@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react/cjs/react.development"
 import { useHistory } from "react-router-dom"
-import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import { Form, FormGroup, Input, Label, Button, Nav, NavItem, NavLink } from 'reactstrap';
 import { getNumOfHoles, getCourses } from "../posts/post_manager";
 import { createHoleByHole } from "./score_manager"
 
@@ -176,7 +176,7 @@ export const HoleByHoleForm = () => {
                         name="par"
                         value={individualHoleArray[i].par}
                         onChange={
-                            (evt) => { 
+                            (evt) => {
                                 changeIndividualHoleState(evt, i)
                             }
                         }
@@ -239,25 +239,19 @@ export const HoleByHoleForm = () => {
 
     return (
         <>
-            <Button
-                color="success"
-                onClick={(evt) => {
-                    evt.preventDefault()
-                    history.push("/form/final_score")
-                }}
-            >
-                Final Score
-            </Button>
-            <Button
-                color="success"
-                onClick={(evt) => {
-                    evt.preventDefault()
-                    history.push("/form/hole_table")
-                }}
-            >
-                Hole_by_Hole
-            </Button>
-            <h2 style={{"margin": "2%"}}>Hole by Hole</h2>
+            <Nav pills>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/form/final_score">
+                        Final Score
+                    </NavLink>
+                </NavItem>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/form/hole_table">
+                        Hole-by-Hole
+                    </NavLink>
+                </NavItem>
+            </Nav>
+            <h2 style={{ "margin": "2%" }}>Hole by Hole</h2>
             <Form style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
                 <FormGroup>
                     <Label for="exampleText">
@@ -319,10 +313,10 @@ export const HoleByHoleForm = () => {
                 </FormGroup>
                 <FormGroup>
                     {
-                        show9 ? <ListOf9/> : ""
+                        show9 ? <ListOf9 /> : ""
                     }
                     {
-                        show18 ? <ListOf18/> : ""
+                        show18 ? <ListOf18 /> : ""
                     }
                 </FormGroup>
                 <Button

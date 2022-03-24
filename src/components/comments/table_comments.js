@@ -116,7 +116,8 @@ export const TableComments = () => {
                         onChange={changeCommentState}
                     />
                 </FormGroup>
-                <button
+                <Button
+                    color="success"
                     onClick={evt => {
                         // Prevent form from being submitted
                         evt.preventDefault()
@@ -133,7 +134,7 @@ export const TableComments = () => {
                     }}
                 >
                     Submit
-                </button>
+                </Button>
             </Form>
         </>
     )

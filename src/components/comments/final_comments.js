@@ -100,7 +100,8 @@ export const FinalComments = () => {
                         onChange={changeCommentState}
                     />
                 </FormGroup>
-                <button
+                <Button
+                    color="success"
                     onClick={evt => {
                         // Prevent form from being submitted
                         evt.preventDefault()
@@ -117,7 +118,7 @@ export const FinalComments = () => {
                     }}
                 >
                     Submit
-                </button>
+                </Button>
             </Form>
         </>
     )
