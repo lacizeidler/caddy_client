@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Nav, NavItem, NavLink, CardTitle, CardSubtitle } from 'reactstrap';
 import { getSharedHoleByHole } from "./score_manager"
 import { useHistory } from "react-router-dom";
 import { BiCommentDetail } from "react-icons/bi"
@@ -19,40 +19,33 @@ export const SharedHoleByHoleList = () => {
 
     return (
         <>
-            <Button
-                size="sm"
-                color="success"
-                onClick={
-                    () => {
-                        history.push("/new/post")
-                    }
-                }
-            >New Post</Button>
-            <Button
-                size="sm"
-                color="success"
-                onClick={
-                    () => {
-                        history.push("/shared/final_score")
-                    }
-                }
-            >Final Scores</Button>
-            <Button
-                size="sm"
-                color="success"
-                onClick={
-                    () => {
-                        history.push("/shared/table_score")
-                    }
-                }
-            >Table Scores</Button>
+            <Nav pills>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/new/post">
+                        New Post
+                    </NavLink>
+                </NavItem>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/shared/final_score">
+                        Final Scores
+                    </NavLink>
+                </NavItem>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/shared/table_score">
+                        Table Scores
+                    </NavLink>
+                </NavItem>
+            </Nav>
             <div>
                 {
                     holeByHoles.map(course => {
-                        return <div style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }} key={course.id}>
-                            <h4>Date: {course.date}</h4>
-                            <h4>Course: {course?.course?.name}</h4>
-                            <h4># of Holes: {course.num_of_holes.holes}</h4>
+                        return <div style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }} key={course.id}>
+                            <CardTitle tag="h5">
+                                {course.golfer.user.first_name} {course.golfer.user.last_name}
+                            </CardTitle>
+                            <CardSubtitle>Date: {course.date}</CardSubtitle>
+                            <CardSubtitle>Course: {course?.course?.name}</CardSubtitle>
+                            <CardSubtitle># of Holes: {course.num_of_holes.holes}</CardSubtitle>
                             <Table>
                                 <thead>
                                     <tr>
@@ -87,7 +80,7 @@ export const SharedHoleByHoleList = () => {
                                     </Table>
                                 </div>
                             })}
-                            <TableLikes course={course} setHoleByHoles={setHoleByHoles}/>
+                            <TableLikes course={course} setHoleByHoles={setHoleByHoles} />
                             <Button
                                 color="success"
                                 onClick={

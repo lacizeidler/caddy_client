@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getPosts } from "./post_manager"
-import { Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText, Button } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardSubtitle, CardLink, CardText, Button, NavItem, NavLink, Nav } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import { BsHeart, BsFillHeartFill } from "react-icons/bs";
 import { BiCommentDetail } from "react-icons/bi"
@@ -21,33 +21,23 @@ export const PostList = () => {
 
     return (
         <>
-            <Button
-                color="success"
-                size="sm"
-                onClick={
-                    () => {
-                        history.push("/new/post")
-                    }
-                }
-            >New Post</Button>
-            <Button
-                color="success"
-                size="sm"
-                onClick={
-                    () => {
-                        history.push("/shared/final_score")
-                    }
-                }
-            >Final Scores</Button>
-            <Button
-                color="success"
-                size="sm"
-                onClick={
-                    () => {
-                        history.push("/shared/table_score")
-                    }
-                }
-            >Table Scores</Button>
+            <Nav pills>
+                <NavItem style={{ "marginLeft": "2%"}}>
+                    <NavLink style={{"color": "darkGreen", "border": "green solid 1px"}} href="/new/post">
+                        New Post
+                    </NavLink>
+                </NavItem>
+                <NavItem style={{ "marginLeft": "2%"}}>
+                    <NavLink style={{"color": "darkGreen", "border": "green solid 1px"}} href="/shared/final_score">
+                        Final Scores
+                    </NavLink>
+                </NavItem>
+                <NavItem style={{ "marginLeft": "2%"}}>
+                    <NavLink style={{"color": "darkGreen", "border": "green solid 1px"}}  href="/shared/table_score">
+                        Table Scores
+                    </NavLink>
+                </NavItem>
+            </Nav>
             {
                 posts.map(post => {
                     return <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
@@ -77,7 +67,7 @@ export const PostList = () => {
                             <CardText>
                                 {post.content}
                             </CardText>
-                            <PostLikes post={post} setPosts={setPosts}/>
+                            <PostLikes post={post} setPosts={setPosts} />
                             <Button
                                 color='success'
                                 onClick={

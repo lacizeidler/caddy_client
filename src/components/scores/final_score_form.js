@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from 'react-router-dom'
-import { Form, Label, Input, FormGroup, Button } from 'reactstrap';
+import { Form, Label, Input, FormGroup, Button, Nav, NavItem, NavLink } from 'reactstrap';
 import { CourseForm } from "../courses/course_form";
 import { createFinalScore, getNumOfHoles, getCourses } from "../posts/post_manager";
 
@@ -37,25 +37,19 @@ export const FinalScoreForm = () => {
 
     return (
         <>
-            <Button
-                color="success"
-                onClick={(evt) => {
-                    evt.preventDefault()
-                    history.push("/form/final_score")
-                }}
-            >
-                Final Score
-            </Button>
-            <Button
-                color="success"
-                onClick={(evt) => {
-                    evt.preventDefault()
-                    history.push("/form/hole_table")
-                }}
-            >
-                Hole_by_Hole
-            </Button>
-            <h2 style={{"margin": "2%"}}>New Final Score</h2>
+            <Nav pills>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/form/final_score">
+                        Final Score
+                    </NavLink>
+                </NavItem>
+                <NavItem style={{ "marginLeft": "2%" }}>
+                    <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/form/hole_table">
+                        Hole-by-Hole
+                    </NavLink>
+                </NavItem>
+            </Nav>
+            <h2 style={{ "margin": "2%" }}>New Final Score</h2>
             <Form style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
                 <FormGroup>
                     <Label for="exampleText">
