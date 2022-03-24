@@ -335,6 +335,7 @@ export const HoleByHoleForm = () => {
 
                         // Send POST request to your API
                         createHoleByHole(holeByHole)
+                        history.push('/list/hole_table')
                     }}
                 >
                     Submit

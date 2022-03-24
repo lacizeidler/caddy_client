@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Card, CardBody, CardSubtitle, CardText, Button, Nav, NavItem, NavLink } from 'reactstrap';
 import { getFinalScores } from "./score_manager";
 import { useHistory } from "react-router-dom";
+import { ShareFinal } from "./share_final";
 
 export const FinalScoreList = () => {
     const [finalScores, setFinalScores] = useState([])
@@ -33,7 +34,7 @@ export const FinalScoreList = () => {
             <Nav pills>
                 <NavItem style={{ "marginLeft": "2%" }}>
                     <NavLink style={{ "color": "darkGreen", "border": "green solid 1px" }} href="/scores/new">
-                        New Post
+                        New Score
                     </NavLink>
                 </NavItem>
                 <NavItem style={{ "marginLeft": "2%" }}>
@@ -79,6 +80,7 @@ export const FinalScoreList = () => {
                         >
                             Delete
                         </Button>
+                        <ShareFinal score={score}/>
                     </Card>
                 })
             }
