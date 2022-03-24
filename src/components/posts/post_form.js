@@ -30,7 +30,7 @@ export const PostForm = () => {
     return (
         <>
         <h2 style={{ "margin": "2%" }}>New Post</h2>
-            <Form style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
+            <Form style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                 <FormGroup>
                     <Label for="exampleText">
                         Golf Course

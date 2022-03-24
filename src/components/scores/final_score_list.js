@@ -50,7 +50,7 @@ export const FinalScoreList = () => {
             </Nav>
             {
                 finalScores.map(score => {
-                    return <Card key={score.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
+                    return <Card key={score.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                         <CardBody>
                             <CardSubtitle
                                 className="mb-2 text-muted"
@@ -70,6 +70,7 @@ export const FinalScoreList = () => {
                                 Golf Course: {score.course.name}
                             </CardText>
                         </CardBody>
+                        <div>
                         <Button
                             color="danger"
                             onClick={
@@ -81,6 +82,7 @@ export const FinalScoreList = () => {
                             Delete
                         </Button>
                         <ShareFinal score={score}/>
+                        </div>
                     </Card>
                 })
             }

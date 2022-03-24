@@ -39,7 +39,7 @@ export const SharedHoleByHoleList = () => {
             <div>
                 {
                     holeByHoles.map(course => {
-                        return <div style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }} key={course.id}>
+                        return <div style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }} key={course.id}>
                             <CardTitle tag="h5">
                                 {course.golfer.user.first_name} {course.golfer.user.last_name}
                             </CardTitle>

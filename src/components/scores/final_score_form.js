@@ -50,7 +50,7 @@ export const FinalScoreForm = () => {
                 </NavItem>
             </Nav>
             <h2 style={{ "margin": "2%" }}>New Final Score</h2>
-            <Form style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
+            <Form style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                 <FormGroup>
                     <Label for="exampleText">
                         Golf Course

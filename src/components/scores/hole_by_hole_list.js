@@ -68,7 +68,7 @@ export const HoleByHoleList = () => {
             <div>
                 {
                     holeByHoles.map(course => {
-                        return <div style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }} key={course.id}>
+                        return <div style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }} key={course.id}>
                             <h4>Date: {course.date}</h4>
                             <h4>Course: {course.course.name}</h4>
                             <h4># of Holes: {course.num_of_holes.holes}</h4>
@@ -106,8 +106,9 @@ export const HoleByHoleList = () => {
                                     </Table>
                                 </div>
                             })}
-
-                            <button
+                            <div>
+                            <Button
+                                color="danger"
                                 onClick={
                                     () => {
                                         deleteHoleByHole(parseInt(course.id))
@@ -115,8 +116,9 @@ export const HoleByHoleList = () => {
                                 }
                             >
                                 Delete
-                            </button>
+                            </Button>
                             <ShareTable course={course}/>
+                            </div>
                         </div>
                     })
                 }

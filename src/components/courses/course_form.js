@@ -22,7 +22,7 @@ export const CourseForm = () => {
 
     return (
         <>
-            <Form style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
+            <Form style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                 <ModalHeader>
                     Register New Course
                 </ModalHeader>

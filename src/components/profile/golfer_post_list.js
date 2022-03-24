@@ -35,7 +35,7 @@ export const GolferPostList = () => {
         <>
             {
                 posts.map(filteredPost => (
-                    <Card key={filteredPost.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
+                    <Card key={filteredPost.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                         <CardBody>
                             <CardSubtitle
                                 className="mb-2 text-muted"

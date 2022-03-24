@@ -1,3 +1,4 @@
+import { Button } from "reactstrap";
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom";
 
@@ -33,13 +34,14 @@ export const ShareFinal = ({score}) => {
 
     return(
         <>
-            <button
+            <Button
+                color="success"
                 onClick={
                     (evt) => {
                         UpdatedFinal(evt)
                     }
                 }
-            >Share</button>
+            >Share</Button>
         </>
     )
 }

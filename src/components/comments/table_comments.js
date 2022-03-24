@@ -32,7 +32,7 @@ export const TableComments = () => {
 
     return (
         <>
-                <div style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }} key={table.id}>
+                <div style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }} key={table.id}>
                     <h4>Date: {table.date}</h4>
                     <h4>Course: {table?.course?.name}</h4>
                     <h4># of Holes: {table?.num_of_holes?.holes}</h4>

@@ -32,7 +32,7 @@ export const FinalComments = () => {
 
     return (
         <>
-            <Card key={final.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
+            <Card key={final.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                 <CardBody>
                     <CardTitle tag="h5">
                         {final.golfer?.user.first_name} {final.golfer?.user.last_name}

@@ -10,8 +10,8 @@ export const NavBar = () => {
     const history = useHistory()
       return (
         <div>
-          <Navbar color="faded" light>
-            <NavbarBrand href="/" className="me-auto" style={{"color": "green"}}>Caddy Hack</NavbarBrand>
+          <Navbar light>
+            <NavbarBrand href="/" className="me-auto" style={{"color": "green", "textAlign": "center"}}>Caddy Hack</NavbarBrand>
             <NavbarToggler onClick={() => setIsOpen(!isOpen)} className="me-2"/>
             <Collapse isOpen={isOpen} navbar>
               <Nav navbar>

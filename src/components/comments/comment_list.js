@@ -32,7 +32,7 @@ export const CommentList = () => {
 
     return (
         <>
-            <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
+            <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                 <CardBody>
                     <CardTitle tag="h5">
                         {post.golfer?.user.first_name} {post.golfer?.user.last_name}
@@ -65,10 +65,10 @@ export const CommentList = () => {
 
             {
                 post.comment_post?.map(comment => {
-                    return <div key={comment.id} style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
+                    return <div key={comment.id} style={{ "margin": "1%", "padding": "2%" }}>
                         <Card
                         >
-                            <CardBody>
+                            <CardBody style={{"backgroundColor": "#EFF7D3"}}>
                                 <CardSubtitle
                                     className="mb-2 text-muted"
                                     tag="h6"

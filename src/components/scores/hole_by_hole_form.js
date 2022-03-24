@@ -14,93 +14,93 @@ export const HoleByHoleForm = () => {
         holes: []
     })
     const [newIndividualHole1, setNewIndividualHole1] = useState({
-        par: 0,
-        score: 0,
+        par: 3,
+        score: 3,
         hole_num: 1
     })
     const [newIndividualHole2, setNewIndividualHole2] = useState({
-        par: 0,
-        score: 0,
+        par: 4,
+        score: 5,
         hole_num: 2
     })
     const [newIndividualHole3, setNewIndividualHole3] = useState({
-        par: 0,
-        score: 0,
+        par: 5,
+        score: 4,
         hole_num: 3
     })
     const [newIndividualHole4, setNewIndividualHole4] = useState({
-        par: 0,
-        score: 0,
+        par: 3,
+        score: 5,
         hole_num: 4
     })
     const [newIndividualHole5, setNewIndividualHole5] = useState({
-        par: 0,
-        score: 0,
+        par: 3,
+        score: 3,
         hole_num: 5
     })
     const [newIndividualHole6, setNewIndividualHole6] = useState({
-        par: 0,
-        score: 0,
+        par: 5,
+        score: 4,
         hole_num: 6
     })
     const [newIndividualHole7, setNewIndividualHole7] = useState({
-        par: 0,
-        score: 0,
+        par: 5,
+        score: 5,
         hole_num: 7
     })
     const [newIndividualHole8, setNewIndividualHole8] = useState({
-        par: 0,
-        score: 0,
+        par: 4,
+        score: 6,
         hole_num: 8
     })
     const [newIndividualHole9, setNewIndividualHole9] = useState({
-        par: 0,
-        score: 0,
+        par: 4,
+        score: 5,
         hole_num: 9
     })
     const [newIndividualHole10, setNewIndividualHole10] = useState({
-        par: 0,
-        score: 0,
+        par: 3,
+        score: 3,
         hole_num: 10
     })
     const [newIndividualHole11, setNewIndividualHole11] = useState({
-        par: 0,
-        score: 0,
+        par: 3,
+        score: 3,
         hole_num: 11
     })
     const [newIndividualHole12, setNewIndividualHole12] = useState({
-        par: 0,
-        score: 0,
+        par: 3,
+        score: 4,
         hole_num: 12
     })
     const [newIndividualHole13, setNewIndividualHole13] = useState({
-        par: 0,
-        score: 0,
+        par: 3,
+        score: 5,
         hole_num: 13
     })
     const [newIndividualHole14, setNewIndividualHole14] = useState({
-        par: 0,
-        score: 0,
+        par: 4,
+        score: 6,
         hole_num: 14
     })
     const [newIndividualHole15, setNewIndividualHole15] = useState({
-        par: 0,
-        score: 0,
+        par: 4,
+        score: 4,
         hole_num: 15
     })
     const [newIndividualHole16, setNewIndividualHole16] = useState({
-        par: 0,
-        score: 0,
+        par: 5,
+        score: 4,
         hole_num: 16
     })
     const [newIndividualHole17, setNewIndividualHole17] = useState({
-        par: 0,
-        score: 0,
+        par: 3,
+        score: 4,
         hole_num: 17
     })
     const [newIndividualHole18, setNewIndividualHole18] = useState({
-        par: 0,
-        score: 0,
+        par: 3,
+        score: 3,
         hole_num: 18
     })
     const individual9HoleArray = [newIndividualHole1, newIndividualHole2, newIndividualHole3, newIndividualHole4, newIndividualHole5, newIndividualHole6, newIndividualHole7, newIndividualHole8, newIndividualHole9]
@@ -172,6 +172,7 @@ export const HoleByHoleForm = () => {
                 </th>
                 <td>
                     <Input
+                        min="0"
                         type="number"
                         name="par"
                         value={individualHoleArray[i].par}
@@ -184,6 +185,7 @@ export const HoleByHoleForm = () => {
                 </td>
                 <td>
                     <Input
+                        min="0"
                         type="number"
                         name="score"
                         value={individualHoleArray[i].score}
@@ -208,6 +210,7 @@ export const HoleByHoleForm = () => {
                 </th>
                 <td>
                     <Input
+                        min="0"
                         type="number"
                         name="par"
                         value={individual9HoleArray[i].par}
@@ -220,6 +223,7 @@ export const HoleByHoleForm = () => {
                 </td>
                 <td>
                     <Input
+                        min="0"
                         type="number"
                         name="score"
                         value={individual9HoleArray[i].score}
@@ -252,7 +256,7 @@ export const HoleByHoleForm = () => {
                 </NavItem>
             </Nav>
             <h2 style={{ "margin": "2%" }}>Hole by Hole</h2>
-            <Form style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%" }}>
+            <Form style={{ "border": "grey solid 1px", "margin": "1%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                 <FormGroup>
                     <Label for="exampleText">
                         Golf Course

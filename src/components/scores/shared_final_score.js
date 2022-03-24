@@ -38,7 +38,7 @@ export const SharedFinalScoreList = () => {
             </Nav>
             {
                 finalScores.map(score => {
-                    return <Card key={score.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
+                    return <Card key={score.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                         <CardBody>
                             <CardTitle tag="h5">
                                 {score.golfer.user.first_name} {score.golfer.user.last_name}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom";
+import { Button } from "reactstrap";
 
 export const ShareTable = ({course}) => {
     const history = useHistory()
@@ -29,13 +30,14 @@ export const ShareTable = ({course}) => {
 
     return(
         <>
-            <button
+            <Button
+                color="success"
                 onClick={
                     (evt) => {
                         UpdatedTable(evt)
                     }
                 }
-            >Share</button>
+            >Share</Button>
         </>
     )
 }

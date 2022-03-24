@@ -40,7 +40,7 @@ export const PostList = () => {
             </Nav>
             {
                 posts.map(post => {
-                    return <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%" }}>
+                    return <Card key={post.id} style={{ "border": "grey solid 1px", "margin": "2%", "padding": "2%", "boxShadow": "5px 5px 10px 2px grey" }}>
                         <CardBody>
                             <CardTitle tag="h5">
                                 {post.golfer.user.first_name} {post.golfer.user.last_name}
@@ -59,6 +59,7 @@ export const PostList = () => {
                             </CardSubtitle>
                         </CardBody>
                         <img
+                            style={{"borderRadius": "5px"}}
                             alt="Card image cap"
                             src={post?.image_url}
                             width="100%"
